@@ -1,0 +1,4773 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,height=device-height,initial-scale=1.0"
+    />
+    <title>Onet</title>
+
+    <style>
+      img {
+        max-width: 100%;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style-type: none;
+        font-family: Fira Sans, Arial, Helvetica, sans-serif;
+      }
+
+      /* wersja na telefony */
+
+      @media screen and (max-width: 599px) {
+        /* wyłączam to, co ma być niewidoczne w wersji na telefony */
+
+        .desktop_only_menu_nav,
+        #searchinput,
+        .searchbtn,
+        #mainlogo_desktop,
+        #mail-desktop,
+        #user-desktop,
+        #premium-header-desktop,
+        #biznes-header-destkop,
+        #regionalne-header-desktop,
+        #pogoda-header-desktop,
+        #wideo_audio-header-desktop,
+        #motoryzacja-header-desktop,
+        #nieruchomosci-header-destkop,
+        #others-header-desktop,
+        .header-third-line,
+        #big-kitek-1,
+        .important-big-header,
+        #mainlogo_tablet,
+        .not-for-mobile-overall,
+        .v2nd-section-3rd-col-head1-h4,
+        .v2nd-section-3rd-col-head2-h4,
+        .v2nd-section-small-headlines {
+          display: none;
+        }
+
+        /* nagłówek - pierwsza linia */
+
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 15px 0px 15px 15px;
+        }
+
+        .mainlogo {
+          margin-right: auto;
+        }
+
+        #mail-mobile {
+          width: 26px;
+        }
+
+        #user-mobile {
+          margin-right: 16px;
+          margin-left: 8px;
+          width: 26px;
+        }
+
+        /* nagłówek - druga linia: kategorie + dropdown menu */
+
+        .logonav {
+          display: flex;
+        }
+
+        .dropbtn {
+          position: relative;
+          width: 59px;
+          height: 47px;
+          border: 1px solid #dcdcdc;
+          padding: 16px;
+          background-color: white;
+          border-bottom: 3px solid #ffd200;
+          font-size: 22px;
+          font-weight: 800;
+          text-align: center;
+          letter-spacing: 1px;
+          line-height: 8px;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          right: 0px;
+          z-index: 1; 
+        }
+
+        .dropdown-content li {
+          width: 90vw; 
+          font-size: 11px;
+          border: 1px solid #dcdcdc;
+          padding: 16px 16px 16px 28px;
+          text-align: left;
+          cursor: pointer;
+          text-transform: uppercase;
+          background-color: white;
+        }
+
+        .dropbtn:focus + .dropdown-content {
+          display: block;
+        }
+
+        /* druga linia nagłówka */
+
+        .header-2nd-line-wrapper-mobile {
+          display: flex;
+          text-align: center;
+          text-transform: uppercase;
+        }
+
+        .header-2nd-line-mobile-button {
+          border: 1px solid #dcdcdc;
+          width: 100%;
+          height: 100%;
+          padding: 16px;
+          font-size: 11px;
+          font-weight: 600;
+        }
+
+        #premium-header-mobile {
+          background-color: #164492;
+          color: white;
+          padding: 16px;
+          font-size: 11px;
+          font-weight: 600;
+        }
+
+        #drpdcontent_Zakupy {
+          background-color: #ffd200;
+        }
+
+        /* sekcja z artykułami, która w wersji oryginalnej jest dla mnie
+        przedziwnie uporządkowana, ale spróbuję zachować podobny flow */
+
+        #important-feed-header {
+          text-transform: uppercase;
+          margin: 25px 20px;
+          font-size: 16px;
+        }
+
+        /* kropka przed nagłówkiem */
+
+        .articles-1st-section {
+          position: relative;
+        } 
+
+        h2#important-feed-header::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 10px;
+          top: 15px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* główny artykuł jest siatką grid, w której tłem
+        jest zdjęcie, dodaję tutaj takie elementy jak tytuł,
+        autora artykułu, facebookowe funkcje, część jest elementami
+        siatki, a część to elementy wrzucone na absolucie */
+
+        .front-news-labels-mobile {
+          display: grid;
+          width: 100%;
+          height: 420px;
+          grid-template-columns: 12fr 3fr;
+          grid-template-rows: 42px 168px 42px 84px 42px 42px;
+          /*powyższe wartości wzięłam stąd, że wysokość całej siatki-obrazka podzieliłam
+        na 10 równych kawałków i każdy powyższy wymiar jest n-wielokrotnością
+        1/10 wysokości, tj. 42px */
+          background: url(kitki/mobile/kitek_big-mobile-rwd.png);
+          margin-bottom: 25px;
+          position: relative;
+          border-radius: 10px;
+        }
+
+        .front-news-labels-mobile div {
+          background-size: auto;
+          background-attachment: fixed;
+        }
+
+        /* elementy z siatki grid */
+
+        /* poniżej jest avik autora artykułu */
+
+        .author-avatar-1 {
+          position: absolute;
+          margin: 10px 0 0 25px;
+          width: 40px;
+        }
+
+        .kitek-avatar-1 {
+          border-radius: 50%;
+        }
+
+        /*przycisk Obserwuj */
+
+        .front-news-follow-mobile span {
+          color: black;
+          background-color: #ffd200;
+          margin: 15px 20px 5px 0;
+          padding: 5px;
+          text-align: center;
+          font-size: 12px;
+          border-radius: 5px;
+          position: absolute;
+        }
+
+        /* labelka nad tytułem artykułu */
+
+        .front-news-span-label-mobile {
+          position: absolute;
+          background-color: #ffd200;
+          margin: 10px 0 45px 25px;
+          padding: 6px 10px;
+          border-radius: 5px;
+          text-transform: uppercase;
+          font-weight: 700;
+          font-size: 14px;
+        }
+
+        /* tytuł artykułu */
+
+        .front-news-title-mobile {
+          color: white;
+          padding: 10px;
+          margin-left: 15px;
+          font-weight: 700;
+          font-size: 17px;
+        }
+
+        /* autor artykułu */
+
+        .front-news-author-mobile {
+          color: white;
+          margin-left: 15px;
+          padding: 0 10px;
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        /* social media - like, save, share */
+
+        /* wszystkie przyciski - ikonki wraz z opisem - są flexboxem */
+
+        .front-news-social-media {
+          grid-column: 1 / 3;
+          grid-row: 6 / 7;
+          display: flex;
+          border-top: 1px solid hsla(0, 0%, 92%, 0.2);
+          align-items: center;
+          justify-content: space-around;
+        }
+
+        /* dla każdej pary - ikonki social mediów i 
+        nagłówka ją opisującego - stworzyłam osobne flexboxy */
+
+        .front-news-social-media div {
+          display: flex;
+          gap: 8px;
+
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          position: relative;
+        }
+
+        /* nagłówki opisujące ikonki social mediów */
+
+        .mobile-social-head {
+          color: white;
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        .mobile-social-like-icon,
+        .mobile-social-save-icon,
+        .mobile-social-share-icon {
+          height: 14px;
+        }
+
+        /* separatory między przyciskami social-mediów */
+
+        span.mobile-social-like-head::after,
+        span.mobile-social-save-head::after {
+          content: "";
+          border-right: 1px solid hsla(0, 0%, 92%, 0.2);
+          position: absolute;
+          right: 0;
+          height: 50%; 
+          bottom: 25%; 
+
+        /*flow w wersji mobilnej jest trochę inny niż na innych
+        urządzeniach, toteż całą sekcję z artykułami wrzucam we flexboxa
+        i zmieniam kolejność poszczególnych komponentów */
+
+        .articles-1st-section {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .col-3-feed-wrapper {
+          order: 1;
+        }
+        .col-1-feed {
+          order: 2;
+        }
+        .col-2-feed {
+          order: 3;
+        }
+
+        /* wg planu tutaj ma być teraz kolumna z newsami col-3.
+        najpierw robię do niej nagłówki w siatce grid, a później sama 
+        kolumna będzie już po prostu flexboxem niewpisanym w grida*/
+
+        .mobile-col-3-headlines ul {
+          display: grid;
+          grid-template-columns: repeat(2, auto);
+          grid-template-rows: auto;
+          grid-column-gap: 10px;
+          grid-template-areas: "Wiadomosci Premium";
+          margin: auto 8px auto 8px;
+        }
+
+        .mobile-col-3-headlines-wiadomosci {
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          grid-area: Wiadomosci;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border-radius: 12px 12px 0 0;
+          background-color: white;
+          box-shadow: 0px -3px 18px -7px rgba(66, 68, 90, 1);
+          font-size: 12px;
+        }
+
+        .mobile-col-3-headlines-wiadomosci-icon img {
+          width: 18px;
+          margin-top: 5px;
+        }
+
+        .mobile-col-3-headlines-wiadomosci-span {
+          margin-bottom: 5px;
+          font-weight: 700;
+        }
+
+        .mobile-col-3-headlines-premium {
+          grid-column: 2 / 3;
+          grid-row: 1 / 2;
+          grid-area: Premium;
+          background: rgb(0, 65, 152);
+          background: linear-gradient(
+            90deg,
+            rgba(0, 65, 152, 1) 19%,
+            rgba(68, 112, 171, 1) 50%,
+            rgba(0, 65, 152, 1) 84%
+          );
+          color: white;
+          text-transform: lowercase;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 12px 12px 0 0;
+          font-weight: 700;
+        }
+
+      
+
+        span.mobile-col-3-headlines-premium-span::before {
+          content: "";
+          display: block;
+          background: #ffd200;
+          width: 15px;
+          height: 15px;
+          border-radius: 100%;
+          position: relative;
+          bottom: -2px;
+        }
+
+        .mobile-col-3-headlines-premium-span {
+          display: flex;
+          align-content: center;
+          gap: 3px;
+        }
+
+
+
+      
+
+        /* tutaj są newsy z .col-3 (to jest ta kolumna z małymi zdjęciami) */
+
+        .col-3-feed {
+          display: flex;
+          margin: 10px 0 30px 10px;
+        }
+
+        .important-small-header {
+          display: block;
+          width: 60%;
+          margin-left: 5px;
+        }
+
+        /*labelka do tytułów dostępnych tylko w onecie*/
+
+        #tylko-w-onecie {
+          background: #ffd200;
+          color: black;
+          text-transform: uppercase;
+          margin-right: 5px;
+          font-size: 10px;
+          font-weight: 800;
+          padding: 3px 4px 2px;
+        }
+
+        /*labelka do fotografii treści premium, jest to obrazek premium 
+        ściągnięty z onetu z dodanym tłem;
+        ustawiłam ją na zdjęciu za pomocą position:absolute, gdzie 
+        kontekstem był cały mini-kontener flex (w którym siedzi jeden
+        obrazek oraz jeden nagłówek) */
+
+        .mini-premium-label {
+          position: relative;
+        }
+
+        .premium-label-small {
+          position: absolute;
+          bottom: 5px;
+          width: 125px;
+          text-align: center;
+          background-color: #003eaa;
+        }
+
+        /* pora na resztę artykułów z tej sekcji: wrzucam je jako
+        flexbox, pod każdym z nich są ikonki social-mediów */
+
+        /* nagłówek na początku sekcji */
+
+        .mobile-only-h1 {
+          text-transform: uppercase;
+          margin: 25px 20px;
+          font-size: 16px;
+          font-weight: 700;
+        }
+
+        /* przed nagłówkiem będzie żółta kropka*/
+
+        .important-medium-1 {
+          position: relative;
+        }
+
+        h1.mobile-only-h1::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 10px;
+          top: -8px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* odsuwam nagłówki od fotografii */
+
+        .important-medium-header {
+          margin: 5px 5px 0 5px;
+        }
+
+        /* pod każdym newsem z tej sekcji są ikonki social-media
+        - tylko że tutaj są one w kolorze czarnym i nie mają
+        separatorów */
+
+        .front-news-social-media-black {
+          display: flex;
+          gap: 8px;
+          margin: 30px 0 30px;
+          border-radius: 0 0 10px 10px;
+          box-shadow: 0px 13px 11px -6px rgba(66, 68, 90, 1);
+        }
+
+        .front-news-social-media-black span {
+          color: black;
+          margin-bottom: 10px;
+        }
+
+        .front-news-social-media-black img {
+          margin-bottom: 10px;
+        }
+
+        .mobile-fake-portals-label {
+          width: 100%;
+          border-radius: 10px 10px 0 0;
+          margin-top: 5px;
+          box-shadow: 0px -15px 35px -14px rgba(66, 68, 90, 1);
+        }
+
+        /* sekcja druga z artykułami */
+
+        /* nagłówek sekcji */
+
+        .important-other-sections-header {
+          text-transform: uppercase;
+          padding: 25px 20px;
+          font-size: 16px;
+          font-weight: 700;
+          box-shadow: 0px -15px 35px -14px rgba(66, 68, 90, 1);
+          border-radius: 10px 10px 0 0;
+        }
+
+        /* przed nagłówkiem będzie żółta kropka*/
+
+        .important-other-sections-header-wrapper {
+          position: relative;
+        }
+
+        h2.important-other-sections-header::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 10px;
+          top: 15px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* filmik ze Staśką jest bytem niezależnym, nie wchodzi w żadne
+        siatki */
+
+        .video-stasia {
+          width: 100%;
+          border-radius: 10px 10px 0 0;
+        }
+
+        /* cały kontener z filmikiem i nagłówkiem
+        ma szare tło */
+
+        .v2nd-section-video {
+          background-color: #2f2e2a;
+          margin-bottom: 35px;
+          border-radius: 0 0 10px 10px;
+        }
+
+        /* nagłówek pod filmikiem */
+
+        .important-feed-header {
+          padding: 10px;
+          color: white;
+          font-size: 14px;
+        }
+
+        /* sociale pod filmikiem */
+
+        .front-news-social-media-video {
+          padding: 10px 10px 15px 10px;
+          border-radius: 0 0 10px 10px;
+          box-shadow: 0px 13px 11px -6px rgba(66, 68, 90, 1);
+        }
+
+        /* separatory między przyciskami social-mediów */
+
+        span.mobile-social-like-head-video::after,
+        span.mobile-social-save-head-video::after {
+          content: "";
+          border-right: 1px solid hsla(0, 0%, 92%, 0.2);
+          position: absolute;
+          right: 0;
+          height: 16px;
+          top: 0;
+        }
+
+        /* z kolejnych artykułów robię jednowierszową siatkę grid,
+        która będzie się scrollowała w osi x */
+
+        /* nagłówek dla tej sekcji */
+        .mobile-only-headline-v2nd-section-scroll {
+          border-radius: 10px 10px 0 0;
+          box-shadow: 0px -15px 35px -14px rgba(66, 68, 90, 1);
+          padding: 25px 20px;
+          text-transform: uppercase;
+          font-size: 16px;
+          font-weight: 700;
+        }
+
+        /* przed nagłówkiem będzie żółta kropka*/
+
+        .mobile-only-wrapper-scroll-articles {
+          position: relative;
+        }
+
+        h3.mobile-only-headline-v2nd-section-scroll::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 10px;
+          top: 17px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        .mobile-only-wrapper {
+          display: grid;
+          grid-auto-columns: calc(100% - 100px);
+          grid-auto-flow: column;
+          overflow-x: auto;
+          grid-column-gap: 10px;
+          border-radius: 0 0 10px 10px;
+          box-shadow: 0px 13px 11px -6px rgba(66, 68, 90, 1);
+          padding-bottom: 20px;
+        }
+
+        .mobile-only-wrapper li {
+          width: 100%;
+          height: auto;
+        }
+
+        /* kolejny element to żółty kontener z wiadomościami - 
+        jednym newsem z dużą fotografią oraz przewijanym menu z 
+        bieżącymi sprawami */
+
+        .mobile-only-yellow-container {
+          background-color: #ffd200;
+          border-radius: 10px;
+          box-shadow: 0px -15px 35px -14px rgba(66, 68, 90, 1);
+          box-shadow: 0px 13px 11px -6px rgba(66, 68, 90, 1);
+          margin: 35px 0;
+        }
+
+        .mobile-only-yellow-container-headline {
+          border-radius: 10px 10px 0 0;
+          margin-top: 35px;
+          padding: 20px 15px 20px 20px;
+          font-size: 14px;
+          font-weight: 700;
+          text-transform: uppercase;
+          box-shadow: 0px -15px 35px -14px rgba(66, 68, 90, 1);
+        }
+
+        /* przed nagłówkiem będzie biała kropka*/
+
+        .mobile-only-yellow-container {
+          position: relative;
+          z-index: 0; 
+        }
+
+        h2.mobile-only-yellow-container-headline::before {
+          position: absolute;
+          content: "";
+          background: white;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 10px;
+          top: 13px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        .mobile-only-news-menu-scroll {
+          z-index: 2; /* menu do scrollowania musi być na wierzchu,
+          bo inaczej nie ma scrollowania */
+        }
+
+        /* scrollowalne menu */
+
+        .mobile-only-news-menu-scroll {
+          display: grid;
+          grid-auto-columns: max-content;
+          grid-auto-flow: column;
+          overflow-x: auto;
+          grid-column-gap: 10px;
+        }
+
+        .mobile-only-news-menu-scroll li {
+          padding: 15px;
+          font-weight: 700;
+          font-size: 14px;
+        }
+
+        .important-medium-header-mobile-yellow-container {
+          padding: 15px 5px 25px 5px;
+        }
+
+        /* na dole żółtego kontenera są dwie ikonki social media */
+
+        .social-small-icons-mobile {
+          display: flex;
+          justify-content: flex-end;
+          gap: 15px;
+          padding: 0 15px 10px 0;
+        }
+
+        .social-small-icons-mobile picture {
+          width: 22px;
+        }
+
+        /* dalej są newsy, które w innych szerokościach są w kolumnie
+        trzeciej - ale tylko te, które mają swoje zdjęcie */
+
+        .v2nd-section-3rd-col-small-8,
+        .v2nd-section-3rd-col-small-9 {
+          display: flex;
+          margin: 25px 0 10px 10px;
+        }
+
+        /* kolejna sekcja to pogoda */
+
+        .local-weather-icons img {
+          width: 30px;
+          padding: 5px;
+          background-color: #e8e8e8;
+          border-radius: 100%;
+        }
+
+        .local-weather-icon {
+          width: 25px;
+        }
+
+        /* tworzę siatkę grid na całą tę sekcję */
+
+        .local-weather {
+          display: grid;
+          height: 350px;
+          padding: 30px 10px 45px 10px;
+          grid-template-columns: 1fr 3fr;
+          grid-template-rows: 30px auto;
+          grid-row-gap: 15px;
+          grid-template-areas:
+            "header header"
+            "icon weather-details";
+
+          border-radius: 10px;
+          box-shadow: 0px 13px 11px -6px rgba(66, 68, 90, 1),
+            0px -15px 35px -14px rgba(66, 68, 90, 1);
+          margin: 25px 0;
+        }
+
+        /* nagłówek */
+
+        .local-weather-city-headline {
+          grid-area: header;
+          grid-column: 1 / 3;
+          grid-row: 1 / 2;
+          margin-left: 10px;
+        }
+
+        /* przed nagłówkiem jest żółta kropka */
+
+        .local-weather {
+          position: relative;
+        }
+
+        h3.local-weather-city-headline::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 10px;
+          top: 25px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* sekcja z ikonkami */
+
+        .local-weather-icons-today {
+          font-weight: 700;
+          font-size: 14px;
+        }
+
+        .local-weather-icons {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        /* pomiędzy ikonkami a opisem jest linia */
+
+        div.local-weather-icons::after {
+          content: "";
+          border-right: 1px solid #e8e8e8;
+          height: 290px;
+          position: absolute;
+          left: 110px;
+          top: 85px;
+        }
+
+        /* sekcja opisowa */
+
+        /* to będzie flexbox, który ma w środku malutkiego grida <3 */
+
+        .local-weather-text {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          margin-left: 45px;
+        }
+
+        /* bieżąca temperatura = wartość liczbowa + ikonka */
+
+        .local-weather-currently {
+          display: flex;
+          justify-content: center;
+        }
+
+        .local-weather-icon {
+          width: 72px;
+        }
+
+        .local-weather-temperature {
+          font-size: 62px;
+        }
+
+        /* dalsze informacje o pogodzie */
+
+        .local-weather-temperature-text {
+          text-align: center;
+          font-size: 14px;
+        }
+
+        /* grid ze szczegółowym opisem pogody */
+
+        .local-weather-details-wrapper {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: repeat(6, auto);
+          grid-column-gap: 10px;
+          justify-content: center;
+          font-size: 12px;
+        }
+
+        .local-weather-details-bold {
+          font-weight: 700;
+        }
+
+        /* kolejna sekcja - Sport - składa się z nagłówka sekcji,
+        głównego artykułu wraz z nagłówkiem oraz kolumny newsów 
+        z nagłówkami. Tło całej sekcji jest jest zielone. Od razu
+        tutaj zaznaczę: font nagłówka jest czarny, jest na zielonym 
+        tle i częściowo nachodzi na żółtą kropkę. Nie umiem
+        zrobić tak, aby nagłówek na żółtej kropce był czarny,
+        a na zielonym tle biały. */
+
+        .v3rd-section-col1-wrapper {
+          margin-top: 45px;
+        }
+
+        .mobile-sport-small-articles {
+          background-color: #005826;
+        }
+
+        .v3rd-section-big {
+          background-color: #005826;
+          color: white;
+        }
+
+        /* przed nagłówkiem jest żółta kropka */
+
+        .important-other-sections-header-wrapper-sport {
+          background-color: #005826;
+          position: relative;
+          z-index: 0;
+          border-radius: 10px 10px 0 0;
+          box-shadow: 0px -15px 35px -14px rgba(66, 68, 90, 1);
+        }
+
+        h2.important-other-sections-header::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 10px;
+
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* między nagłówkiem sekcji a zdjęciem jest menu, które
+        można sobie scrollować */
+
+        .mobile-only-sport-menu {
+          display: grid;
+          grid-auto-columns: max-content;
+          grid-auto-flow: column;
+          overflow-x: auto;
+          grid-column-gap: 10px;
+          background-color: #005826;
+          color: white;
+        }
+
+        .mobile-only-sport-menu li {
+          padding: 15px;
+          font-weight: 700;
+          font-size: 14px;
+        }
+
+        /* nagłówek głównego artykułu - jest NA zdjęciu */
+
+        .v3rd-section-big {
+          position: relative;
+        }
+
+        .important-medium-header-on-photo {
+          position: absolute;
+          bottom: 60px;
+          left: -5px;
+          color: white;
+          border-left: 6px solid #ffd200;
+          text-shadow: 0 1.1px 2px #333;
+          padding-left: 15px;
+          font-size: 28px;
+        }
+
+        /* pod głównym artykułem jest kolumna artykułów z działu sportowego - są to "małe"
+        artykuły, każdy z nich składa się ze zdjęcia oraz nagłówka */
+
+        .mobile-sport-small-articles {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          padding: 40px 0 20px 10px;
+          border-radius: 0 0 10px 10px;
+          box-shadow: 0px 13px 11px -6px rgba(66, 68, 90, 1);
+        }
+
+        .mobile-sport-small-articles li {
+          display: flex;
+          padding-bottom: 25px;
+          color: white;
+        }
+
+        /* dalej będzie niewielki kontener z sekcją premium */
+
+        /* z artykułów robię jednowierszową
+        sekcję, która będzie się scrollowała w osi x */
+
+        /* cały pojemnik */
+
+        .mobile-only-wrapper-premium-scroll-articles {
+          margin: 45px 0 45px 0;
+          border-radius: 10px;
+          box-shadow: 0px -15px 35px -14px rgba(66, 68, 90, 1);
+          box-shadow: 0px 13px 11px -6px rgba(66, 68, 90, 1);
+          padding-bottom: 20px;
+          background: rgb(0, 65, 152);
+          background: linear-gradient(
+            90deg,
+            rgba(0, 65, 152, 1) 19%,
+            rgba(68, 112, 171, 1) 50%,
+            rgba(0, 65, 152, 1) 84%
+          );
+        }
+
+        /* nagłówek dla tej sekcji */
+        .mobile-only-headline-v3rd-section-scroll {
+          border-radius: 10px 10px 0 0;
+          box-shadow: 0px -15px 35px -14px rgba(66, 68, 90, 1);
+          padding: 25px 20px;
+          text-transform: uppercase;
+          font-size: 16px;
+          font-weight: 700;
+        }
+
+        /* przed nagłówkiem będzie żółta kropka - w przeciwieństwie
+        do pozostałych miejsc ze spotlightem, tutaj kropka
+        nie nachodzi na nagłówek sekcji*/
+
+        .mobile-only-wrapper-premium-scroll-articles {
+          position: relative;
+          z-index: 0;
+        }
+
+        h3.mobile-only-headline-v3rd-section-scroll::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 12px;
+          top: 25px;
+        }
+
+        .mobile-only-headline-v3rd-section-scroll {
+          margin-left: 30px; 
+          text-transform: lowercase;
+          font-weight: 700;
+          font-size: 25px;
+          color: white;
+        }
+
+        /* pod nagłówkiem sekcji, a przed artykułami będzie
+        menu do scrollowania */
+
+        .mobile-only-premium-menu {
+          display: grid;
+          grid-auto-columns: max-content;
+          grid-auto-flow: column;
+          overflow-x: auto;
+          grid-column-gap: 10px;
+        }
+
+        .mobile-only-premium-menu li {
+          color: white;
+          padding: 15px;
+          font-weight: 700;
+          font-size: 14px;
+        }
+
+        /* i wreszcie artykuły z sekcji premium */
+
+        .mobile-only-wrapper-premium {
+          display: grid;
+          grid-auto-columns: calc(100% - 100px);
+          grid-auto-flow: column;
+          overflow-x: auto;
+          grid-column-gap: 10px;
+          padding: 15px;
+        }
+
+        .mobile-only-wrapper-premium li {
+          width: 100%;
+          height: auto;
+          color: white;
+        }
+
+        .goodbye {
+          width: 85vw;
+          padding: 25px;
+          color: gray;
+          font-size: 12px;
+          text-align: justify;
+        }
+      }
+
+      /*wersja na tablety - tryb landscape*/
+      /*maksymalna szerokość urządzenia to 1199px, gdyż kolejne 
+      zapytanie o media dotyczy desktopów, gdzie wartością 
+      graniczną jest 1200px, bez zaznaczenia maksymalnej szerokości ustawienia
+      dla tej wersji mi się "kopiowały" do wersji desktopowej - zapewne ze 
+      względu na orientację*/
+
+      @media screen and (min-width: 900px) and (max-width: 1080px) {
+        body {
+          margin-left: 16px;
+          margin-right: 16px;
+        }
+
+        #mainlogo_mobile,
+        #mainlogo_desktop,
+        .dropbtn,
+        #premium-header-mobile,
+        #user-mobile,
+        #mail-mobile,
+        .dropdown-content,
+        .front-news-social-media,
+        .front-news-labels-mobile,
+        .mobile-col-3-headlines,
+        #wideo_audio-header-desktop,
+        .mobile-only-h1,
+        .mobile-fake-portals-label,
+        .mobile-only-overall {
+          display: none;
+        }
+
+        /* nagłówek - pierwsza linia */
+
+        .header {
+          display: flex;
+          position: sticky;
+          top: 0;
+          background-color: white;
+          z-index: 1;
+        }
+
+        .mainlogo {
+          padding: 10px;
+        }
+
+        #searchinput {
+          width: 90px;
+          height: 35px;
+          background-color: #efefef;
+          border-radius: 20px;
+        }
+
+        .searchbtn {
+          width: 90px;
+          height: 35px;
+          background-color: #ffd200;
+          color: #1e1e1e;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 700;
+          margin-left: 10px;
+        }
+
+        .desktop_only_menu_nav {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: auto;
+        }
+
+        .search-bar {
+          padding: 15px;
+        }
+
+        .desktop_menu_first_row {
+          width: 50vw;
+          display: grid;
+          grid-template-columns: repeat(12, auto);
+          align-items: center;
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        .menu-first-row-icons img {
+          height: 20px;
+        }
+
+        #premium-btn {
+          width: 103px;
+          height: 35px;
+          border-radius: 20px;
+          background: rgb(0, 65, 152);
+          background: linear-gradient(
+            90deg,
+            rgba(0, 65, 152, 1) 44%,
+            rgba(68, 112, 171, 1) 65%,
+            rgba(0, 65, 152, 1) 84%
+          );
+          text-align: center;
+          text-transform: lowercase;
+          font-size: 12px;
+          font-weight: 700;
+          color: white;
+        }
+
+        #mail-desktop {
+          padding: 0 1px 0 15px;
+        }
+
+        #user-desktop img {
+          width: 30px;
+        }
+
+        #mail-desktop img {
+          width: 30px;
+        }
+
+        #mail-desktop-text {
+          padding-right: 15px;
+        }
+
+        /* druga linia nagłówka */
+
+        .header-2nd-line {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 97vw;
+          text-transform: uppercase;
+        }
+
+        .header-2nd-line li {
+          font-size: 14px;
+          font-weight: 700;
+          border: 1px solid #dcdcdc;
+          padding: 16px 20px;
+        }
+
+        #premium-header-desktop {
+          background-color: #003eaa;
+          color: white;
+        }
+
+        /* dropdown menu - przycisk premium */
+
+        /* kontekst dla dropdown-menu */
+
+        .premium-header-desktop {
+          position: relative;
+        }
+
+        /*menu defaultowo ukryte */
+
+        .dropdown-premium {
+          visibility: hidden;
+          position: absolute;
+          z-index: 1;
+          display: grid;
+          grid-template-columns: repeat(3, 180px);
+          grid-template-rows: repeat(3, auto);
+          align-items: center;
+        }
+
+        .premium-button {
+          width: 100%;
+          height: 100%;
+        }
+
+        /* content w dropdown menu */
+
+        .dropdown-premium {
+          border: 1px solid #dcdcdc;
+          background-color: white;
+          color: black;
+          width: auto;
+        }
+
+        .dropdown-premium li {
+          font-size: 12px;
+          /*nadpisuję ostylowanie dla header-2nd-line li, które mam wyżej*/
+          border: none;
+          padding: 24px;
+        }
+
+        /* odkrywamy menu po kliknięciu oraz
+          możemy sobie wybrać jakąś opcję z menu 
+          i menu nie znika */
+
+        .premium-button:focus + .dropdown-premium {
+          visibility: visible;
+        }
+
+        .dropdown-premium li:focus {
+          background: #f0f0f4;
+        } 
+
+        /* trzecia linia */
+
+        .header-third-line {
+          display: grid;
+          width: 80%;
+          border: 1px solid #dcdcdc;
+          margin-top: 15px;
+          grid-template-columns: 45% 55%;
+          grid-template-rows: auto;
+          grid-template-areas: "weather add-3rd-line";
+        }
+
+        #weather {
+          grid-area: weather;
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          width: 450px;
+        }
+
+        .additional-third-line-icons img {
+          width: 25px;
+        }
+
+        .additional-third-line-headlines {
+          font-size: 11px;
+          text-align: center;
+          margin-top: 5px;
+        }
+
+        /*tworzę siatkę grid, w której będą znajdować się ikonki wraz z
+        nagłówkami - każda kolumna to osobny kontener flex na pojedynczą
+        ikonkę i pojedynczy nagłówek */
+
+        .additional-third-line {
+          display: grid;
+          grid-template-columns: repeat(5, 60px);
+          grid-template-rows: auto;
+          justify-content: space-around;
+          margin-top: 10px;
+        }
+
+        /* kontener flex na parę ikonka+nagłówek */
+
+        .third-line-icon-headline {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        /*Sekcja: Wybrane dla ciebie */
+
+        /*Tworzę kontener grid dla całej sekcji*/
+
+        .articles-1st-section {
+          display: grid;
+          grid-template-columns: 620px 300px;
+          grid-template-rows: 80px repeat(3, 290px);
+          grid-column-gap: 20px;
+          grid-template-areas:
+            "header header"
+            "col1 col3"
+            "col1 col3"
+            "col2 col3";
+        }
+
+        /* i wstawiam content w siatkę */
+
+        #important-feed-header {
+          grid-area: header;
+          grid-row: 1 / 2;
+          grid-column: 1 / 3;
+        }
+
+        .col-1-feed {
+          grid-area: col1;
+          grid-row: 2 / 3;
+          grid-column: 1 / 2;
+        }
+
+        .col-2-feed {
+          grid-area: col2;
+          grid-row: 4 / 5;
+          grid-column: 1 / 2;
+        }
+
+        .col-3-feed-wrapper {
+          grid-area: col3;
+          grid-row: 2 / 3;
+          grid-column: 2 / 3;
+        }
+
+        /*nagłówek dla całej sekcji */
+
+        #important-feed-header {
+          grid-area: header;
+          align-self: flex-end;
+          padding-bottom: 5px;
+          border-bottom: 1px solid #dcdcdc;
+          font-size: 20px;
+          text-transform: uppercase;
+          padding-left: 10px;
+        }
+
+        /* kropka przed nagłówkiem */
+
+        .articles-1st-section {
+          position: relative;
+        } 
+
+        h2#important-feed-header::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 0;
+          top: 45px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /*wszystkie nagłówki oprócz głównego mają ten sam styl */
+
+        .important-big-header {
+          display: block;
+          width: calc(100% - 55px);
+          margin: 0 auto;
+          padding: 10px;
+          background-color: #ffd200;
+          color: black;
+          left: 3%;
+          font-size: 18px;
+          cursor: pointer;
+          bottom: 25px;
+          position: absolute;
+        }
+
+        .important-big {
+          position: relative;
+        }
+
+        .kitek-picture {
+          cursor: pointer;
+        }
+
+        /*pozostałe nagłówki */
+
+        .important-medium-header {
+          display: block;
+          width: 300px; 
+          margin-top: 5px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+
+        /* Wszystkie kolumny (col1, col2, col3) są oddzielnymi 
+        kontenerami flex */
+
+        .col-1-feed {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-content: flex-start;
+          margin-top: 15px;
+        }
+
+        /*odsuwam trochę mniejsze kafelki z col1 od dużego kafelka */
+        .important-medium-1,
+        .important-medium-2 {
+          margin-top: 20px;
+        }
+
+        .col-2-feed {
+          display: flex;
+          justify-content: space-between;
+          align-content: flex-start;
+        }
+
+        .col-3-feed-wrapper {
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* styl dla wszystkich nagłówków z tego wrappera */
+
+        .important-small-header {
+          width: 190px; 
+          height: 70px;
+          font-size: 14px;
+          text-transform: none;
+          margin-left: 10px;
+          cursor: pointer;
+        }
+
+        /* zrobiłam to tak, że każdy news to oddzielny kontener flex składający się z obrazka oraz nagłówka */
+
+        .col-3-feed {
+          display: flex;
+          margin-bottom: 15px;
+        }
+
+        .col-3-feed-wrapper li {
+          border-bottom: 1px solid #dcdcdc;
+          margin: 15px 0 0 20px;
+          cursor: pointer;
+          
+        }
+
+        /*labelka do tytułów dostępnych tylko w onecie*/
+
+        #tylko-w-onecie {
+          background: #ffd200;
+          color: black;
+          text-transform: uppercase;
+          margin-right: 5px;
+          font-size: 10px;
+          font-weight: 800;
+          padding: 3px 4px 2px;
+        }
+
+        /*labelka do fotografii treści premium, jest to obrazek premium 
+        ściągnięty z onetu z dodanym tłem;
+        ustawiłam ją na zdjęciu za pomocą position:absolute, gdzie 
+        kontekstem był cały mini-kontener flex (w którym siedzi jeden
+        obrazek oraz jeden nagłówek) */
+
+        .mini-premium-label {
+          position: relative;
+        }
+
+        .premium-label-small {
+          position: absolute;
+          bottom: 10px;
+          width: 95px;
+          text-align: center;
+          background-color: #003eaa;
+        }
+
+        /* kolejna sekcja z artykułami - tym razem głównym artykułem jest
+      moje własne video*/
+
+        .video-stasia {
+          width: 620px;
+          height: 300px;
+          margin-top: 15px;
+        }
+
+        /* tworzę siatkę grid */
+        .articles-2nd-section {
+          display: grid;
+          grid-template-columns: 620px 300px;
+          grid-column-gap: 20px;
+          grid-template-rows: auto;
+          /* powyższe wymiary to dokładnie te 
+          same wymiary co w wcześniejszej siatce
+          grid dla pierwszej sekcji*/
+          grid-template-areas: "big small";
+          margin-top: 25px;
+        }
+
+        .v2nd-section-col1-big {
+          grid-area: big;
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 20px;
+        }
+
+        /* nagłówek tej sekcji ma szerokość równą szerokości tej kolumny */
+        .important-other-sections-header {
+          display: block;
+          width: 620px;
+          font-size: 20px;
+          border-bottom: 1px solid #dcdcdc;
+          text-transform: uppercase;
+          padding: 0 0 5px 10px;
+        }
+
+        /* kropka przed nagłówkiem */
+
+        .important-other-sections-header-wrapper {
+          position: relative;
+        }
+
+        h2.important-other-sections-header::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 0;
+          bottom: 10%;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* nagłówek pod filmikiem */
+        .important-feed-header {
+          display: block;
+          width: 620px;
+          margin: 10px 0 20px;
+        }
+
+        /* kontener z boku to dwa flexboxy jeden pod drugim */
+
+        .v2nd-section-3rd-wrapper {
+          grid-area: col3;
+          grid-column: 2 / 3;
+          grid-row: 1 / 2;
+          margin-left: 20px;
+        }
+
+        .v2nd-section-3rd-col-part1,
+        .v2nd-section-3rd-col-part2 {
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* trochę odsuwam górną sekcję od dolnej */
+
+        .v2nd-section-3rd-col-part1 ul {
+          margin-bottom: 20px;
+        }
+
+        /* pierwsze newsy z każdej sekcji z tej części są wyróżnione -
+      font jest nieco większy i mają dołączony obrazek. Kolejne newsy
+      już obrazka nie mają, to po prostu linki */
+
+        /*wyróżnione newsy to kontenery flexbox */
+
+        .v2nd-section-3rd-col-small-8,
+        .v2nd-section-3rd-col-small-9 {
+          display: flex;
+          border-bottom: 1px solid #ededf0;
+          margin-top: 10px;
+        }
+
+        /* nagłówki dla obu tych sekcji */
+
+        .v2nd-section-3rd-col-head1-h4 {
+          padding: 15px 0 5px 5px;
+          text-transform: uppercase;
+          margin-left: 5px;
+          border-bottom: 1px solid #dcdcdc;
+        }
+
+        .v2nd-section-3rd-col-head2-h4 {
+          padding: 15px 0 5px 5px;
+          text-transform: uppercase;
+          margin-left: 5px;
+          border-bottom: 1px solid #dcdcdc;
+        }
+
+        .v2nd-section-3rd-col-head1,
+        .v2nd-section-3rd-col-head2 {
+          position: relative;
+        }
+
+        /* kropka przed nagłówkami w obu sekcjach */
+
+        h4.v2nd-section-3rd-col-head1-h4::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 0;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        .v2nd-section-3rd-col-head2-h4::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 0;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* tytuły artykułów */
+
+        .v2nd-section-small-headlines h5 {
+          font-weight: 500;
+          border-bottom: 1px solid #ededf0;
+          padding: 5px 0;
+        }
+
+        /* trzecia sekcja */
+
+        /* rysuję siatkę grid, w którą powstawiam artykuły */
+
+        .articles-3rd-section {
+          display: grid;
+          grid-template-columns: 620px 300px;
+          grid-column-gap: 20px;
+          grid-template-rows: auto;
+          /* powyższe wymiary to dokładnie te 
+          same wymiary co w wcześniejszej siatce
+          grid dla drugiej sekcji*/
+          grid-template-areas: "big small";
+          margin: 45px 0 35px 0;
+        }
+
+        /* kropka przed nagłówkiem sekcji */
+
+        .important-other-sections-header-wrapper-sport {
+          position: relative;
+        }
+
+        h2.important-other-sections-header-sec3::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 0;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* nagłówek głównego artykułu - jest NA zdjęciu */
+
+        .v3rd-section-big {
+          position: relative;
+        }
+
+        .important-medium-header-on-photo {
+          position: absolute;
+          bottom: 40px;
+          color: white;
+          border-left: 6px solid #ffd200;
+          text-shadow: 0 1.1px 2px #333;
+          padding-left: 15px;
+          font-size: 28px;
+          background-color: rgb(
+            192,
+            192,
+            192,
+            0.6
+          ); /*w oryginale
+          tego nie ma, ale dla lepszej czytelności nagłówka dodałam tutaj
+          lekko transparentne tło */
+        }
+
+        .v3rd-section-col1-wrapper {
+          grid-area: big;
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 15px;
+        }
+
+        .v3rd-section-big {
+          margin-top: 15px;
+        }
+
+        /* kontener z boku to flexbox */
+
+        .v3rd-section-2nd-col-wrapper {
+          grid-area: col3;
+          grid-column: 2 / 3;
+          grid-row: 1 / 2;
+          margin-left: 20px;
+        }
+
+        .v3rd-section-2nd-col-part1 {
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* pierwszy news z tej sekcji jest wyróżniony -
+      font jest nieco większy i ma dołączony obrazek. Kolejne newsy
+      już obrazka nie mają, to po prostu linki */
+
+        /* wyróżniony news to kontener flexbox */
+
+        .v3rd-section-2nd-col-small-10 {
+          display: flex;
+          border-bottom: 1px solid #ededf0;
+          margin-top: 10px;
+        }
+
+        /* nagłówek dla tej sekcji */
+
+        .v3rd-section-2nd-col-head1-h4 {
+          padding: 15px 0 5px 5px;
+          text-transform: uppercase;
+          margin-left: 5px;
+          border-bottom: 1px solid #dcdcdc;
+        }
+
+        .v3rd-section-2nd-col-head1 {
+          position: relative;
+        }
+
+        /* kropka przed nagłówkiem */
+
+        h4.v3rd-section-2nd-col-head1-h4::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 0;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* tytuły artykułów */
+
+        .v3rd-section-small-headlines h5 {
+          font-weight: 500;
+          border-bottom: 1px solid #ededf0;
+          padding: 5px 0;
+        }
+
+        .goodbye {
+          width: 85vw;
+          padding: 45px;
+          color: gray;
+          font-size: 12px;
+          text-align: justify;
+        }
+      }
+
+      
+
+      @media screen and (min-width: 600px) and (max-width: 899px) {
+        body {
+          margin-left: 8px;
+          margin-right: 8px;
+        }
+
+        #mainlogo_mobile,
+        #mainlogo_desktop,
+        .dropbtn,
+        #premium-header-mobile,
+        #user-mobile,
+        #mail-mobile,
+        .dropdown-content,
+        #wideo_audio-header-desktop,
+        #heart,
+        #sympatia,
+        #games_logo,
+        #gry,
+        #vod_logo,
+        #vod,
+        #ad_logo,
+        #ogloszenia,
+        #wideo_audio-header-desktop,
+        #nieruchomosci-header-destkop,
+        .front-news-labels-mobile,
+        .mobile-col-3-headlines,
+        .front-news-social-media,
+        #motoryzacja-header-desktop,
+        .mobile-only-h1,
+        .mobile-fake-portals-label,
+        .mobile-only-overall {
+          display: none;
+        }
+
+        /* nagłówek - pierwsza linia */
+
+        .header {
+          display: flex;
+          position: sticky;
+          top: 0;
+          background-color: white;
+          z-index: 1;
+        }
+
+        .mainlogo {
+          padding: 10px;
+        }
+
+        #searchinput {
+          width: 100px;
+          height: 35px;
+          background-color: #efefef;
+          border-radius: 20px;
+        }
+
+        .searchbtn {
+          width: 80px;
+          height: 35px;
+          background-color: #ffd200;
+          color: #1e1e1e;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 700;
+          margin-left: 10px;
+        }
+
+        .desktop_only_menu_nav {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: auto;
+        }
+
+        .search-bar {
+          padding: 0 40px 0 40px;
+        }
+
+        .desktop_menu_first_row {
+          width: 250px;
+          display: grid;
+          grid-template-columns: repeat(4, auto);
+
+          align-items: center;
+          font-size: 10px;
+          font-weight: 700;
+        }
+
+        #premium-btn {
+          width: 95px;
+          height: 35px;
+          border-radius: 20px;
+          background: rgb(0, 65, 152);
+          background: linear-gradient(
+            90deg,
+            rgba(0, 65, 152, 1) 44%,
+            rgba(68, 112, 171, 1) 65%,
+            rgba(0, 65, 152, 1) 84%
+          );
+          text-align: center;
+          text-transform: lowercase;
+          font-size: 12px;
+          font-weight: 700;
+          color: white;
+        }
+
+        #mail-desktop {
+          padding: 0 1px 0 15px;
+        }
+
+        #mail-desktop-text {
+          padding-right: 5px;
+        }
+
+        #user-desktop img {
+          width: 30px;
+        }
+
+        #mail-desktop img {
+          width: 30px;
+        }
+
+        /* druga linia nagłówka */
+
+        .header-2nd-line {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 95vw;
+          margin: 0 auto;
+          text-transform: uppercase;
+        }
+
+        .header-2nd-line li {
+          font-size: 14px;
+          font-weight: 700;
+          border: 1px solid #dcdcdc;
+          padding: 16px 22px;
+        }
+
+        #premium-header-desktop {
+          background-color: #003eaa;
+          color: white;
+        }
+
+        /* dropdown menu - przycisk premium */
+
+        /* kontekst dla dropdown-menu */
+
+        .premium-header-desktop {
+          position: relative;
+        }
+
+        /*menu defaultowo ukryte */
+
+        .dropdown-premium {
+          visibility: hidden;
+          position: absolute;
+          z-index: 1;
+          display: grid;
+          grid-template-columns: repeat(2, 180px);
+          grid-template-rows: repeat(4, auto);
+          align-items: center;
+        }
+
+        .premium-button {
+          width: 100%;
+          height: 100%;
+        }
+
+        /* content w dropdown menu */
+
+        .dropdown-premium {
+          border: 1px solid #dcdcdc;
+          background-color: white;
+          color: black;
+          width: auto;
+        }
+
+        .dropdown-premium li {
+          font-size: 12px;
+          /*nadpisuję ostylowanie dla header-2nd-line li, które mam wyżej*/
+          border: none;
+          padding: 24px;
+        }
+
+        /* odkrywamy menu po kliknięciu oraz
+          możemy sobie wybrać jakąś opcję z menu 
+          i menu nie znika  */
+
+        .premium-button:focus + .dropdown-premium {
+          visibility: visible;
+        }
+
+        .dropdown-premium li:focus {
+          background: #f0f0f4;
+        } 
+
+
+        /* trzecia linia */
+
+        .header-third-line {
+          display: grid;
+          width: 80%;
+          border: 1px solid #dcdcdc;
+          margin: 15px auto 0;
+          grid-template-columns: 45% 55%;
+          grid-template-rows: auto;
+          grid-template-areas: "weather add-3rd-line";
+        }
+
+        #weather {
+          grid-area: weather;
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          width: 450px;
+        }
+
+        .additional-third-line-icons img {
+          width: 25px;
+        }
+
+        .additional-third-line-headlines {
+          font-size: 11px;
+          text-align: center;
+          margin-top: 5px;
+        }
+
+        /*tworzę siatkę grid, w której będą znajdować się ikonki wraz z
+        nagłówkami - każda kolumna to osobny kontener flex na pojedynczą
+        ikonkę i pojedynczy nagłówek */
+
+        .additional-third-line {
+          display: grid;
+          grid-template-columns: repeat(5, 60px);
+          grid-template-rows: auto;
+          justify-content: space-around;
+          margin: 10px auto;
+        }
+
+        /* kontener flex na parę ikonka+nagłówek */
+
+        .third-line-icon-headline {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        /*Sekcja: Wybrane dla ciebie */
+
+        /*Tworzę kontener grid dla całej sekcji*/
+
+        .articles-1st-section {
+          display: grid;
+          grid-template-columns: 620px; /*chciałam tutaj użyć
+          elastyczniejszej jednostki, ale trochę mi się wtedy obrazki 
+          wysypywały z kontenera, w związku z tym w tym gridzie będę
+          używała sztywnych jednostek również do pozostałych jego
+          elementów */
+          grid-template-rows: 80px repeat(3, auto);
+          grid-template-areas:
+            "header"
+            "col-1"
+            "col-3"
+            "col-2";
+          justify-content: center;
+        }
+
+        /* wstawiam content w siatkę */
+
+        #important-feed-header {
+          grid-area: header;
+          grid-row: 1 / 2;
+          grid-column: 1 / 2;
+        }
+
+        .col-1-feed {
+          grid-area: col1;
+          grid-row: 2 / 3;
+          grid-column: 1 / 2;
+        }
+
+        .col-2-feed {
+          grid-area: col-2;
+          grid-row: 4 / 5;
+          grid-column: 1 / 2;
+        }
+
+        .col-3-wrapper {
+          grid-area: col3;
+          grid-row: 3 / 4;
+          grid-column: 1 / 2;
+        }
+
+        /*nagłówek dla całej sekcji */
+
+        #important-feed-header {
+          grid-area: header;
+          align-self: flex-end;
+          padding-bottom: 5px;
+          border-bottom: 1px solid #dcdcdc;
+          font-size: 20px;
+          text-transform: uppercase;
+          padding-left: 10px;
+        }
+
+        /* kropka przed nagłówkiem */
+
+        .articles-1st-section {
+          position: relative;
+        }
+
+        h2#important-feed-header::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 85px;
+          top: 45px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /*wszystkie nagłówki oprócz głównego mają ten sam styl */
+
+        .important-big-header {
+          display: block;
+          width: 565px;
+          padding: 10px;
+          background-color: #ffd200;
+          color: black;
+          position: absolute;
+          bottom: 25%;
+          left: 3%;
+          font-size: 18px;
+          cursor: pointer;
+          bottom: 25px;
+        }
+
+        .important-big {
+          position: relative;
+        }
+
+        .kitek-picture {
+          cursor: pointer;
+        }
+
+        /*pozostałe nagłówki */
+
+        .important-medium-header {
+          display: block;
+          width: 300px;
+          margin-top: 5px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+
+        /* wszystkie powyższe elementy siatki to kontenery flex */
+
+        .col-1-feed {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 10px;
+          margin-top: 15px;
+        }
+
+        .col-3-feed-wrapper {
+          display: flex;
+          flex-direction: column;
+          border: solid 1px #dcdcdc;
+          margin-top: 15px;
+        }
+
+        /* styl dla wszystkich nagłówków z tego wrappera */
+
+        .important-small-header {
+          width: 600px;
+          height: 70px;
+          font-size: 16px;
+          text-transform: none;
+          margin-left: 10px;
+          cursor: pointer;
+        }
+
+        /* zrobiłam to tak, że każdy news to oddzielny kontener flex składający się z obrazka oraz nagłówka */
+
+        .col-3-feed {
+          display: flex;
+          margin-bottom: 15px;
+        }
+
+        .col-3-feed-wrapper li {
+          border-bottom: 1px solid #dcdcdc;
+          margin: 5px 0;
+          cursor: pointer;
+          margin: 15px 20px 0 20px;
+        }
+
+        /*labelka do tytułów dostępnych tylko w onecie*/
+
+        #tylko-w-onecie {
+          background: #ffd200;
+          color: black;
+          text-transform: uppercase;
+          margin-right: 5px;
+          font-size: 10px;
+          font-weight: 800;
+          padding: 2px 4px 2px;
+        }
+
+        /*labelka do fotografii treści premium, jest to obrazek premium 
+        ściągnięty z onetu z dodanym tłem;
+        ustawiłam ją na zdjęciu za pomocą position:absolute, gdzie 
+        kontekstem był cały mini-kontener flex (w którym siedzi jeden
+        obrazek oraz jeden nagłówek) */
+
+        .mini-premium-label {
+          position: relative;
+        }
+
+        .premium-label-small {
+          position: absolute;
+          bottom: 10px;
+          width: 78px;
+          text-align: center;
+          background-color: #003eaa;
+        }
+
+        .col-2-feed {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 10px;
+          margin-top: 15px;
+        }
+
+        /* kolejna sekcja z artykułami - tym razem głównym artykułem jest
+      moje własne video*/
+
+        .video-stasia {
+          width: 620px;
+          height: 300px;
+        }
+
+        /* tworzę siatkę grid */
+        .articles-2nd-section {
+          display: grid;
+          grid-template-columns: 620px;
+          grid-template-rows: repeat(2, auto);
+          grid-template-areas:
+            "big"
+            "small";
+          margin-top: 45px;
+          justify-content: center;
+        }
+
+        .v2nd-section-col1-big {
+          grid-area: big;
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 20px;
+        }
+
+        /* nagłówek tej sekcji ma szerokość równą szerokości tej kolumny */
+        .important-other-sections-header {
+          display: block;
+          width: 620px;
+          font-size: 20px;
+          border-bottom: 1px solid #dcdcdc;
+          text-transform: uppercase;
+          padding: 0 0 5px 10px;
+        }
+
+        /* kropka przed nagłówkiem */
+
+        .important-other-sections-header-wrapper {
+          position: relative;
+        }
+
+        h2.important-other-sections-header::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 0;
+          bottom: 10%;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* nagłówek pod filmikiem */
+        .important-feed-header {
+          display: block;
+          width: 620px;
+          margin: 10px 0 20px;
+        }
+
+        .v2nd-section-3rd-wrapper {
+          grid-area: small;
+          grid-column: 1 / 2;
+          grid-row: 2 / 3;
+          display: flex;
+          flex-direction: column;
+          border: solid 1px #dcdcdc;
+          margin-top: 15px;
+        }
+
+        /* trochę odsuwam górną sekcję od dolnej */
+
+        .v2nd-section-3rd-col-part1 ul {
+          margin-bottom: 20px;
+        }
+
+        /* pierwsze newsy z każdej sekcji z tej części są wyróżnione -
+      font jest nieco większy i mają dołączony obrazek. Kolejne newsy
+      już obrazka nie mają, to po prostu linki */
+
+        /*wyróżnione newsy to kontenery flexbox */
+
+        .v2nd-section-3rd-col-small-8,
+        .v2nd-section-3rd-col-small-9 {
+          display: flex;
+          border-bottom: 1px solid #ededf0;
+          margin: 10px 0 0 15px;
+        }
+
+        /* nagłówki dla obu tych sekcji */
+
+        .v2nd-section-3rd-col-head1-h4 {
+          padding: 15px 0 5px 15px;
+          text-transform: uppercase;
+          border-bottom: 1px solid #dcdcdc;
+        }
+
+        .v2nd-section-3rd-col-head2-h4 {
+          padding: 15px 0 5px 15px;
+          text-transform: uppercase;
+          border-bottom: 1px solid #dcdcdc;
+        }
+
+        .v2nd-section-3rd-col-head1,
+        .v2nd-section-3rd-col-head2 {
+          position: relative;
+        }
+
+        /* kropka przed nagłówkami w obu sekcjach */
+
+        h4.v2nd-section-3rd-col-head1-h4::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 5px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        .v2nd-section-3rd-col-head2-h4::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 5px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* tytuły artykułów */
+
+        .v2nd-section-small-headlines h5 {
+          font-weight: 500;
+          border-bottom: 1px solid #ededf0;
+          padding: 5px 0 5px 15px;
+        }
+
+        /* trzecia sekcja */
+
+        /* rysuję siatkę grid, w którą powstawiam artykuły */
+
+        .articles-3rd-section {
+          display: grid;
+          grid-template-columns: 620px;
+          grid-template-rows: repeat(2, auto);
+          grid-template-areas:
+            "big"
+            "small";
+          margin-top: 45px;
+          justify-content: center;
+        }
+
+        /* kropka przed nagłówkiem sekcji */
+
+        .important-other-sections-header-wrapper-sport {
+          position: relative;
+        }
+
+        h2.important-other-sections-header-sec3::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 0;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* nagłówek głównego artykułu - jest NA zdjęciu */
+
+        .v3rd-section-big {
+          position: relative;
+        }
+
+        .important-medium-header-on-photo {
+          position: absolute;
+          bottom: 40px;
+          color: white;
+          border-left: 6px solid #ffd200;
+          text-shadow: 0 1.1px 2px #333;
+          padding-left: 15px;
+          font-size: 28px;
+          background-color: rgba(
+            192,
+            192,
+            192,
+            0.6
+          ); /*w oryginale
+          tego nie ma, ale dla lepszej czytelności nagłówka dodałam tutaj
+          lekko transparentne tło */
+        }
+
+        .v3rd-section-col1-wrapper {
+          grid-area: big;
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 20px;
+        }
+
+        .v3rd-section-2nd-col-wrapper {
+          grid-area: small;
+          grid-column: 1 / 2;
+          grid-row: 2 / 3;
+          display: flex;
+          flex-direction: column;
+          border: solid 1px #dcdcdc;
+          margin: 15px 0 35px 0;
+        }
+
+        /* trochę odsuwam górną sekcję od dolnej */
+
+        .v2nd-section-3rd-col-part1 ul {
+          margin-bottom: 20px;
+        }
+
+        /* pierwszy news z tej sekcji jest wyróżniony -
+      font jest nieco większy i ma dołączony obrazek. Kolejne newsy
+      już obrazka nie mają, to po prostu linki */
+
+        .v3rd-section-2nd-col-small-10 {
+          display: flex;
+          border-bottom: 1px solid #ededf0;
+          margin: 10px 0 0 15px;
+        }
+
+        /* nagłówek dla tej sekcji */
+
+        .v3rd-section-2nd-col-head1-h4 {
+          padding: 15px 0 5px 15px;
+          text-transform: uppercase;
+          border-bottom: 1px solid #dcdcdc;
+        }
+
+        .v3rd-section-2nd-col-head1 {
+          position: relative;
+        }
+
+        /* kropka przed nagłówkami w obu sekcjach */
+
+        h4.v3rd-section-2nd-col-head1-h4::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 5px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* tytuły artykułów */
+
+        .v3rd-section-small-headlines h5 {
+          font-weight: 500;
+          border-bottom: 1px solid #ededf0;
+          padding: 5px 0 5px 15px;
+        }
+
+        .goodbye {
+          width: 85vw;
+          padding: 45px;
+          color: gray;
+          font-size: 12px;
+          text-align: justify;
+        }
+      }
+
+      /* wersja na desktopy */
+
+      @media screen and (min-width: 1200px) {
+        body {
+          width: max-content;
+          margin: 0 auto;
+        }
+
+        /* nagłówek - pierwsza linia */
+
+        #mainlogo_mobile,
+        #mainlogo_tablet,
+        .dropbtn,
+        #premium-header-mobile,
+        #user-mobile,
+        #mail-mobile,
+        .mobile-col-3-headlines,
+        .front-news-labels-mobile,
+        .front-news-social-media,
+        .mobile-fake-portals-label,
+        .mobile-only-h1,
+        .dropdown-content,
+        .mobile-only-overall {
+          display: none;
+        }
+
+        .header {
+          display: flex;
+          position: sticky;
+          top: 0;
+          background-color: white;
+          z-index: 1;
+        }
+
+        #searchinput {
+          width: 221px;
+          height: 35px;
+          background-color: #efefef;
+          border-radius: 20px;
+        }
+
+        .searchbtn {
+          width: 99px;
+          height: 35px;
+          background-color: #ffd200;
+          color: #1e1e1e;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 700;
+          margin-left: 10px;
+        }
+
+        .desktop_only_menu_nav {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 4px 0 4px 26px;
+          margin-left: auto;
+        }
+
+        .search-bar {
+          padding: 35px;
+        }
+
+        .desktop_menu_first_row {
+          width: 550px; /*to musi być sztywna szerokość, bo inaczej na mniejszych
+          ekranach ten pasek się nieładnie zwęża */
+          display: grid;
+          grid-template-columns: repeat(12, auto);
+          align-items: center;
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        .menu-first-row-icons img {
+          height: 20px;
+        }
+
+        #premium-btn {
+          width: 103px;
+          height: 35px;
+          border-radius: 20px;
+          background: rgb(0, 65, 152);
+          background: linear-gradient(
+            90deg,
+            rgba(0, 65, 152, 1) 44%,
+            rgba(68, 112, 171, 1) 65%,
+            rgba(0, 65, 152, 1) 84%
+          );
+          text-align: center;
+          text-transform: lowercase;
+          font-size: 12px;
+          font-weight: 700;
+          color: white;
+        }
+
+        #mail-desktop {
+          padding: 0 1px 0 15px;
+        }
+
+        #mail-desktop img {
+          width: 30px;
+        }
+
+        #mail-desktop-text {
+          padding-right: 15px;
+        }
+
+        #user-desktop img {
+          width: 30px;
+        }
+
+        /* druga linia nagłówka */
+
+        .header-2nd-line {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          text-transform: uppercase;
+        }
+
+        .header-2nd-line li {
+          font-size: 14px;
+          font-weight: 700;
+          border: 1px solid #dcdcdc;
+          padding: 16px 22px;
+        }
+
+        #premium-header-desktop {
+          background-color: #003eaa;
+          color: white;
+        }
+
+        /* dropdown menu - przycisk premium */
+
+        /*menu defaultowo ukryte */
+
+        .dropdown-premium {
+          visibility: hidden;
+          position: absolute;
+          z-index: 1;
+          display: grid;
+          grid-template-columns: repeat(3, 180px);
+          grid-template-rows: repeat(3, auto);
+          align-items: center;
+        }
+
+        /* kontekst dla dropdown-menu */
+
+        .premium-header-desktop {
+          position: relative;
+        }
+
+        /* content w dropdown menu */
+
+        .dropdown-premium {
+          border: 1px solid #dcdcdc;
+          background-color: white;
+          color: black;
+          width: auto;
+        }
+
+        .dropdown-premium li {
+          font-size: 12px;
+
+          /*nadpisuję ostylowanie dla header-2nd-line li, które mam wyżej*/
+          border: none;
+          padding: 24px;
+        }
+
+        /* odkrywamy menu po kliknięciu oraz
+          możemy sobie wybrać jakąś opcję z menu 
+          i menu nie znika  */
+
+        .premium-button:hover + .dropdown-premium,
+        .dropdown-premium:hover {
+          /*display: block;*/
+          visibility: visible;
+        }
+
+        .dropdown-premium li:hover {
+          background: #f0f0f4;
+        }
+
+        /* hover nad przyciskami menu */
+
+        .header-2nd-line li:hover {
+          background-color: #a4a4a4;
+        }
+
+        /* trzecia linia */
+
+        .header-third-line {
+          display: grid;
+          width: 80%;
+          border: 1px solid #dcdcdc;
+          margin-top: 15px;
+          grid-template-columns: 45% 55%;
+          grid-template-rows: auto;
+          grid-template-areas: "weather add-3rd-line";
+        }
+
+        #weather {
+          grid-area: weather;
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          width: 450px;
+        }
+
+        .additional-third-line-icons img {
+          width: 25px;
+        }
+
+        .additional-third-line-headlines {
+          font-size: 11px;
+          text-align: center;
+          margin-top: 5px;
+        }
+
+        .additional-third-line li {
+          padding-bottom: 15px;
+          margin-top: 10px;
+        }
+
+        /* hover nad elementami tego menu */
+
+        .additional-third-line li:hover {
+          border-bottom: 3px solid #ffd200;
+        }
+
+        /*tworzę siatkę grid, w której będą znajdować się ikonki wraz z
+        nagłówkami - każda kolumna to osobny kontener flex na pojedynczą
+        ikonkę i pojedynczy nagłówek */
+
+        .additional-third-line {
+          display: grid;
+          grid-template-columns: repeat(5, 60px);
+          grid-template-rows: auto;
+          justify-content: space-around;
+          margin-top: 10px;
+        }
+
+        /* kontener flex na parę ikonka+nagłówek */
+
+        .third-line-icon-headline {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        /*sekcja: Wybrane dla ciebie */
+
+        /*tworzę kontener grid dla całej sekcji i ustawiam na sztywno 
+        wysokość wierszy, dzięki czemu wszystkie kafelki są na równej wysokości */
+
+        .articles-1st-section {
+          display: grid;
+          grid-template-columns: 620px 300px 300px; 
+          grid-template-rows: 80px 580px;
+          grid-column-gap: 20px;
+          grid-template-areas:
+            "header header header"
+            "col1 col2 col3";
+        }
+
+        /*nagłówek dla całej sekcji */
+
+        #important-feed-header {
+          grid-area: header;
+          align-self: flex-end;
+          padding-bottom: 5px;
+          border-bottom: 1px solid #dcdcdc;
+          font-size: 20px;
+          text-transform: uppercase;
+          padding-left: 10px;
+        }
+
+        /* kropka przed nagłówkiem */
+
+        .articles-1st-section {
+          position: relative;
+        } 
+
+        h2#important-feed-header::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 0;
+          top: 45px;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /*wszystkie nagłówki oprócz głównego mają ten sam styl */
+
+        .important-big-header {
+          display: block;
+          width: 565px;
+          padding: 10px;
+          background-color: #ffd200;
+          color: black;
+          position: absolute;
+          bottom: 25%;
+          left: 3%;
+          font-size: 18px;
+          cursor: pointer;
+          bottom: 25px;
+        }
+
+        .important-big {
+          position: relative;
+        }
+
+        .kitek-picture {
+          cursor: pointer;
+        }
+
+        /*pozostałe nagłówki */
+
+        .important-medium-header {
+          display: block;
+          width: 300px;
+          margin-top: 5px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+
+        /* pierwsza kolumna w mojej siatce - jeden "duży" news oraz dwa "małe" */
+
+        .col-1-feed {
+          grid-area: col1;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-content: space-between;
+          margin-top: 15px;
+          position: relative;
+        }
+
+        /* druga kolumna w mojej siatce - dwa "małe" newsy */
+
+        .col-2-feed {
+          grid-area: col2;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          margin-top: 15px;
+        }
+
+        /* kontener z pobocznymi najważniejszymi newsami */
+
+        .col-3-feed-wrapper {
+          grid-area: col3;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          margin-top: 8px;
+        }
+
+        /* styl dla wszystkich nagłówków z tego wrappera */
+
+        .important-small-header {
+          width: 190px;
+          height: 70px;
+          font-size: 14px;
+          text-transform: none;
+          margin-left: 10px;
+          cursor: pointer;
+        }
+
+        /* zrobiłam to tak, że każdy news to oddzielny kontener flex składający się z obrazka oraz nagłówka */
+
+        .col-3-feed {
+          display: flex;
+          margin-bottom: 15px;
+        }
+
+        .col-3-feed-wrapper li {
+          border-bottom: 1px solid #dcdcdc;
+          margin: 5px 0;
+          cursor: pointer;
+        }
+
+        /*labelka do tytułów dostępnych tylko w onecie*/
+
+        #tylko-w-onecie {
+          background: #ffd200;
+          color: black;
+          text-transform: uppercase;
+          margin-right: 5px;
+          font-size: 10px;
+          font-weight: 800;
+          padding: 3px 4px 2px;
+        }
+
+        /*labelka do fotografii treści premium, jest to obrazek premium 
+        ściągnięty z onetu z dodanym tłem;
+        ustawiłam ją na zdjęciu za pomocą position:absolute, gdzie 
+        kontekstem był cały mini-kontener flex (w którym siedzi jeden
+        obrazek oraz jeden nagłówek) */
+
+        .mini-premium-label {
+          position: relative;
+        }
+
+        .premium-label-small {
+          position: absolute;
+          bottom: 10px;
+
+          width: 95px;
+          text-align: center;
+          background-color: #003eaa;
+        }
+
+        /* kolejna sekcja z artykułami - tym razem głównym artykułem jest
+      moje własne video*/
+
+        .video-stasia {
+          width: 620px;
+          height: 300px;
+        }
+
+        /* rysuję siatkę grid, w którą powstawiam artykuły */
+
+        .articles-2nd-section {
+          display: grid;
+          grid-template-columns: 940px 320px; /* te wielkości wzięłam z 
+        wcześniej siatki grid: 
+        tam były 3 kolumny: 620px + 300px + 300px
+        do tego gap między kolumnami = 20px;
+        Aby kolejna siatka była spójna, policzyłam to tak:
+        pierwsza kolumna = 620px + 300px + 20px
+        czyli 1_kolumna_1_siatki, 2_kolumna_1_siatki oraz col_gap. 
+        Druga kolumna = 300px + 20px
+        czyli 3_kolumna_1_siatki oraz col_gap. Aby zachować odpowiednie 
+        odstępy, w drugiej kolumnie zastosuję margin-left o długości col_gap*/
+          grid-template-rows: auto;
+          grid-template-areas: "big small";
+          margin-top: 25px;
+        }
+
+        /* pierwsza kolumna - wszystko jest flexboxem */
+
+        .v2nd-section-col1-big {
+          grid-area: big;
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 15px;
+        }
+
+        /* nagłówek tej sekcji ma szerokość równą szerokości tej kolumny */
+        .important-other-sections-header {
+          display: block;
+          width: 940px;
+          font-size: 20px;
+          border-bottom: 1px solid #dcdcdc;
+          text-transform: uppercase;
+          padding: 0 0 5px 10px;
+        }
+
+        /* kropka przed nagłówkiem */
+
+        .important-other-sections-header-wrapper {
+          position: relative;
+        }
+
+        h2.important-other-sections-header::before {
+          position: absolute;
+          content: "";
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          left: 0;
+          bottom: 10%;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* nagłówek pod filmikiem */
+        .important-feed-header {
+          display: block;
+          width: 620px;
+          margin: 10px 0 20px;
+        }
+
+        /* kontener z boku to dwa flexboxy jeden pod drugim */
+
+        .v2nd-section-3rd-wrapper {
+          grid-area: col3;
+          grid-column: 2 / 3;
+          grid-row: 1 / 2;
+          margin-left: 20px;
+        }
+
+        .v2nd-section-3rd-col-part1,
+        .v2nd-section-3rd-col-part2 {
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* trochę odsuwam górną sekcję od dolnej */
+
+        .v2nd-section-3rd-col-part1 ul {
+          margin-bottom: 20px;
+        }
+
+        /* pierwsze newsy z każdej sekcji z tej części są wyróżnione -
+      font jest nieco większy i mają dołączony obrazek. Kolejne newsy
+      już obrazka nie mają, to po prostu linki */
+
+        /*wyróżnione newsy to kontenery flexbox */
+
+        .v2nd-section-3rd-col-small-8,
+        .v2nd-section-3rd-col-small-9 {
+          display: flex;
+          border-bottom: 1px solid #ededf0;
+          margin-top: 10px;
+        }
+
+        /* nagłówki dla obu tych sekcji */
+
+        .v2nd-section-3rd-col-head1-h4 {
+          padding: 15px 0 5px 5px;
+          text-transform: uppercase;
+          margin-left: 5px;
+          border-bottom: 1px solid #dcdcdc;
+        }
+
+        .v2nd-section-3rd-col-head2-h4 {
+          padding: 15px 0 5px 5px;
+          text-transform: uppercase;
+          margin-left: 5px;
+          border-bottom: 1px solid #dcdcdc;
+        }
+
+        /* kropka przed nagłówkami w obu sekcjach */
+
+        .v2nd-section-3rd-col-head1,
+        .v2nd-section-3rd-col-head2 {
+          position: relative;
+        }
+
+        h4.v2nd-section-3rd-col-head1-h4::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 0;
+
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        .v2nd-section-3rd-col-head2-h4::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 0;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* tytuły artykułów */
+
+        .v2nd-section-small-headlines h5 {
+          font-weight: 500;
+          border-bottom: 1px solid #ededf0;
+          padding: 5px 0;
+        }
+
+        /* trzecia sekcja */
+
+        /* rysuję siatkę grid, w którą powstawiam artykuły */
+
+        .articles-3rd-section {
+          display: grid;
+          grid-template-columns: 940px 320px;
+          /* to są dokładnie te same wymiary, co grid w 
+          sekcji wyżej */
+          grid-template-rows: auto;
+          grid-template-areas: "big small";
+          margin-top: 55px;
+        }
+
+        /* kropka przed nagłówkiem sekcji */
+
+        .important-other-sections-header-wrapper-sport {
+          position: relative;
+        }
+
+        h2.important-other-sections-header-sec3::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 0;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* pierwsza kolumna - wszystko jest flexboxem */
+
+        .v3rd-section-col1-wrapper {
+          grid-area: big;
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 15px;
+        }
+
+        /* nagłówek głównego artykułu - jest NA zdjęciu */
+
+        .v3rd-section-big {
+          position: relative;
+        }
+
+        .important-medium-header-on-photo {
+          position: absolute;
+          bottom: 40px;
+          color: white;
+          border-left: 6px solid #ffd200;
+          text-shadow: 0 1.1px 2px #333;
+          padding-left: 15px;
+          font-size: 28px;
+        }
+
+        /* kontener w drugiej kolumnie to
+        flexbox z jedną sekcją artykułów */
+
+        .v3rd-section-2nd-col-wrapper {
+          grid-area: col3;
+          grid-column: 2 / 3;
+          grid-row: 1 / 2;
+          margin-left: 20px;
+        }
+
+        .v3rd-section-2nd-col-part1 {
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* pierwszy news z tej sekcji jest wyróżniony -
+      font jest nieco większy i ma dołączony obrazek. Kolejne newsy
+      już obrazka nie mają, to po prostu linki */
+
+        /* wyróżniony news to kontener flexbox */
+
+        .v3rd-section-2nd-col-small-10 {
+          display: flex;
+          border-bottom: 1px solid #ededf0;
+          margin-top: 10px;
+        }
+
+        /* nagłówek dla tej sekcji */
+
+        .v3rd-section-2nd-col-head1-h4 {
+          padding: 15px 0 5px 5px;
+          text-transform: uppercase;
+          margin-left: 5px;
+          border-bottom: 1px solid #dcdcdc;
+        }
+
+        .v3rd-section-2nd-col-head1 {
+          position: relative;
+        }
+
+        /* kropka przed nagłówkiem w tej sekcji */
+
+        h4.v3rd-section-2nd-col-head1-h4::before {
+          content: "";
+          position: absolute;
+          background: #ffd200;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          bottom: 10%;
+          left: 0;
+          z-index: -1; /*kropka musi nachodzić na nagłówek,
+          ale nie może go zasłaniać */
+        }
+
+        /* tytuły artykułów */
+
+        .v3rd-section-small-headlines h5 {
+          font-weight: 500;
+          border-bottom: 1px solid #ededf0;
+          padding: 5px 0;
+        }
+
+        .goodbye {
+          width: 65vw;
+          padding: 45px;
+          color: gray;
+          font-size: 14px;
+          text-align: justify;
+        }
+      }
+    </style>
+  </head>
+
+  
+
+  <body>
+    <!-- Pierwszy wiersz - logo, wyszukiwarka, podserwisy, logowanie -->
+
+    <div class="header">
+      <picture class="mainlogo">
+        <source
+          srcset="mainlogo/mainlogo_small.png"
+          media="(max-width: 599px)"
+        />
+        <source
+          srcset="mainlogo/mainlogo_medium.png"
+          media="(max-width: 1199px)"
+        />
+        <source
+          media="(min-width: 1200px)"
+          srcset="mainlogo/mainlogo_big.png"
+        />
+        <img src="mainlogo/mainlogo_big.png" alt="" />
+      </picture>
+
+      <picture id="mail-mobile">
+        <img src="email.png" alt="skrzynka mailowa" />
+      </picture>
+
+      <picture id="user-mobile">
+        <img src="user.png" alt="konto użytkownika" />
+      </picture>
+
+      <div class="desktop_only_menu_nav">
+        <div class="search-bar">
+          <input type="text" placeholder="Szukaj" id="searchinput" />
+          <button id="search" type="submit" class="searchbtn">Szukaj</button>
+        </div>
+        <ul class="desktop_menu_first_row">
+          <li>
+            <picture id="heart" class="menu-first-row-icons">
+              <img src="heart.png" alt="sympatia logo" />
+            </picture>
+          </li>
+          <li id="sympatia">Sympatia</li>
+          <li>
+            <picture id="games_logo" class="menu-first-row-icons">
+              <img src="strategy.png" alt="gry logo" />
+            </picture>
+          </li>
+          <li id="gry">Gry</li>
+          <li>
+            <picture id="vod_logo" class="menu-first-row-icons">
+              <img src="play-button.png" alt="vod logo" />
+            </picture>
+          </li>
+          <li id="vod">VOD</li>
+          <li>
+            <picture id="ad_logo" class="menu-first-row-icons">
+              <img src="cork-board.png" alt="ogłoszenia logo" />
+            </picture>
+          </li>
+          <li id="ogloszenia">Ogłoszenia</li>
+          <li id="premium-desktop">
+            <button id="premium-btn" type="button" class="premium-btn">
+              Premium
+            </button>
+          </li>
+          <li>
+            <picture id="mail-desktop">
+              <img src="email.png" alt="skrzynka mailowa" />
+            </picture>
+          </li>
+          <li id="mail-desktop-text">E-MAIL</li>
+          <li>
+            <picture id="user-desktop">
+              <img src="user.png" alt="konto użytkownika" />
+            </picture>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!--Musiałam zredagować inaczej 2nd line, by móc dodać dropdown menu
+    do wszystkich szerokości (wczesniej były tutaj <p> zamiast divów/ul/li
+      i był z tym problem. Postanowiłam rozdzielić mobile menu od
+      zwykłego menu). Poniżej jest mobilne menu-->
+    <div class="header-2nd-line-wrapper-mobile mobile-only-overall">
+      <div class="header-2nd-line-mobile-button">Wiadomości</div>
+      <div class="header-2nd-line-mobile-button">Sport</div>
+      <div id="premium-header-mobile">Premium</div>
+      <div class="dropdown">
+        <button class="dropbtn">...</button>
+        <ul class="dropdown-content">
+          <li>Biznes</li>
+          <li>Regionalne</li>
+          <li>Pogoda</li>
+          <li>Kultura</li>
+          <li>Nieruchomości</li>
+          <li>Motoryzacja</li>
+          <li id="drpdcontent_Zakupy">Zakupy</li>
+          <li>Czas wolny</li>
+          <li>Sympatia</li>
+          <li>Styl życia</li>
+          <li>Technologie</li>
+          <li>Podróże</li>
+          <li>Życie gwiazd</li>
+          <li>Program TV</li>
+          <li>Gotowanie</li>
+          <li>Ogłoszenia</li>
+          <li>Pasjans</li>
+          <li id="premium">premium</li>
+          <li id="email">E-mail</li>
+        </ul>
+      </div>
+    </div>
+
+    <!--Tutaj jest menu dla pozostałych szerokości-->
+    <ul class="header-2nd-line-wrapper not-for-mobile-overall">
+      <li>
+        <ul class="header-2nd-line">
+          <li class="not-for-mobile-overall">Wiadomości</li>
+          <li class="not-for-mobile-overall">Sport</li>
+
+          <li id="premium-header-desktop">
+            <div class="premium-button" tabindex="1">Premium &#9662;</div>
+            <ul class="dropdown-premium not-for-mobile-overall">
+              <li>Kup Onet Premium</li>
+              <li>good-mousekeeping.pl</li>
+              <li>Pawsmopolitan</li>
+              <li>Vanity Fur</li>
+              <li>Claws&Chronicles</li>
+              <li>Meowly Mail</li>
+              <li>Mruczweek</li>
+              <li>Miautomoto</li>
+              <li>Strefa premium</li>
+            </ul>
+          </li>
+          <li id="biznes-header-destkop">Biznes</li>
+          <li id="regionalne-header-desktop">Regionalne</li>
+          <li id="pogoda-header-desktop">Pogoda</li>
+          <li id="wideo_audio-header-desktop">Wideo i audio</li>
+          <li id="motoryzacja-header-desktop">Motoryzacja</li>
+          <li id="nieruchomosci-header-destkop">Nieruchomości</li>
+          <li id="others-header-desktop">...</li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="header-third-line">
+      <li class="weather">
+        <picture id="weather">
+          <img src="weather_onet.png" alt="pogoda" />
+        </picture>
+      </li>
+
+      <li>
+        <ul class="additional-third-line">
+          <li class="third-line-icon-headline">
+            <picture class="additional-third-line-icons">
+              <img src="3rd-line/prognoza-smogowa.png" alt="prognoza-smogowa" />
+            </picture>
+            <span
+              class="additional-third-line-headlines additional-third-line-headlines-smog"
+              >Smog</span
+            >
+          </li>
+          <li class="third-line-icon-headline">
+            <picture class="additional-third-line-icons">
+              <img src="3rd-line/program-tv.png" alt="program-tv" />
+            </picture>
+            <span class="additional-third-line-headlines">Program TV</span>
+          </li>
+          <li class="third-line-icon-headline">
+            <picture class="additional-third-line-icons">
+              <img src="3rd-line/horoskop.png" alt="bzdury" />
+            </picture>
+            <span class="additional-third-line-headlines">Horoskop</span>
+          </li>
+          <li class="third-line-icon-headline">
+            <picture class="additional-third-line-icons">
+              <img src="3rd-line/oferty.png" alt="oferty" />
+            </picture>
+            <span class="additional-third-line-headlines">Oferty</span>
+          </li>
+          <li class="third-line-icon-headline">
+            <picture class="additional-third-line-icons">
+              <img src="3rd-line/jak-dojade.png" alt="jak dojadę" />
+            </picture>
+            <span class="additional-third-line-headlines">Jak dojadę</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <!--Artykuły: sekcja z najważniejszymi, wybranymi dla użytkownika treściami-->
+    <!--artykuł główny na mobilki wrzuciłam w div przed faktycznym <li> z tym
+      artykułem, bo niestety tenże div wrzucony jako element
+    w <li class="important-big"> psuł mi wszystko i musiałabym przebudować 
+      zbyt dużo. -->
+    <section class="articles-1st-section">
+      <h2 id="important-feed-header">Wybrane dla Ciebie</h2>
+
+      <div class="front-news-labels-mobile">
+        <div class="front-news-avatar-mobile">
+          <picture class="author-avatar-1">
+            <img class="kitek-avatar-1" src="kitki/kitek_avatar_1.png" alt="" />
+          </picture>
+        </div>
+        <div class="front-news-follow-mobile">
+          <span class="front-news-follow-mobile-span">Obserwuj</span>
+        </div>
+        <div class="blank1"></div>
+        <div class="blank2"></div>
+        <div class="front-news-label-mobile">
+          <span class="front-news-span-label-mobile">Komentarz</span>
+        </div>
+        <div class="blank3"></div>
+        <div class="front-news-title-mobile">
+          A jeśli nie trzeba biegać po mieszkaniu o 3:00 z głośnym miaukiem?
+        </div>
+        <div class="blank4"></div>
+        <div class="front-news-author-mobile">Kitku Kota</div>
+        <div class="blank5"></div>
+        <div class="front-news-social-media">
+          <div class="mobile-social-like">
+            <img class="mobile-social-like-icon" src="social/like.png" alt="" />
+            <span class="mobile-social-like-head mobile-social-head"
+              >Lubię to</span
+            >
+          </div>
+          <div class="mobile-social-save">
+            <img class="mobile-social-save-icon" src="social/save.png" alt="" />
+            <span class="mobile-social-save-head mobile-social-head"
+              >Zapisz</span
+            >
+          </div>
+          <div class="mobile-social-share">
+            <img
+              class="mobile-social-share-icon"
+              src="social/share.png"
+              alt=""
+            />
+            <span class="mobile-social-share-head mobile-social-head">
+              Udostępnij</span
+            >
+          </div>
+        </div>
+        <div class="blank6"></div>
+      </div>
+
+      <ul class="col-1-feed">
+        <li class="important-big">
+          <picture id="big-kitek-1" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_big_1_mobile.png"
+            />
+            <img src="kitki/kitek_big_1.png" alt="ważny kitek" />
+          </picture>
+
+          <h3 class="important-big-header">
+            A jeśli nie trzeba biegać po mieszkaniu o 3:00 z głośnym miaukiem?
+          </h3>
+        </li>
+
+        <li class="important-medium-1">
+          <h1 class="mobile-only-h1">Weekend z Onetem</h1>
+          <picture id="medium-kitek-1" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_1_mobile.png"
+            />
+            <img src="kitki/kitek_medium_1.png" alt="mniej ważny kitek" />
+          </picture>
+          <h3 class="important-medium-header">
+            Ludzka stopa posiada łącznie z kostką 26 kości, 33 stawy i ponad 100
+            mięśni.
+          </h3>
+          <div class="front-news-social-media front-news-social-media-black">
+            <div class="mobile-social-like">
+              <img
+                class="mobile-social-like-icon"
+                src="social/like-black.png"
+                alt=""
+              />
+              <span class="mobile-social-like-head mobile-social-head"
+                >Lubię to</span
+              >
+            </div>
+            <div class="mobile-social-save">
+              <img
+                class="mobile-social-save-icon"
+                src="social/save-black.png"
+                alt=""
+              />
+              <span class="mobile-social-save-head mobile-social-head"
+                >Zapisz</span
+              >
+            </div>
+            <div class="mobile-social-share">
+              <img
+                class="mobile-social-share-icon"
+                src="social/share-black.png"
+                alt=""
+              />
+              <span class="mobile-social-share-head mobile-social-head">
+                Udostępnij</span
+              >
+            </div>
+          </div>
+        </li>
+
+        <li class="important-medium-2">
+          <img
+            class="mobile-fake-portals-label"
+            src="fake-portals/good-mousekeeping.png"
+            alt=""
+          />
+          <picture id="medium-kitek-2" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_2_mobile.png"
+            />
+            <img src="kitki/kitek_medium_2.png" alt="mniej ważny kitek" />
+          </picture>
+          <h3 class="important-medium-header">
+            Zorza polarna występuje na Ziemi, Saturnie, Jowiszu, Uranie i
+            Neptunie.
+          </h3>
+          <div class="front-news-social-media front-news-social-media-black">
+            <div class="mobile-social-like">
+              <img
+                class="mobile-social-like-icon"
+                src="social/like-black.png"
+                alt=""
+              />
+              <span class="mobile-social-like-head mobile-social-head"
+                >Lubię to</span
+              >
+            </div>
+            <div class="mobile-social-save">
+              <img
+                class="mobile-social-save-icon"
+                src="social/save-black.png"
+                alt=""
+              />
+              <span class="mobile-social-save-head mobile-social-head"
+                >Zapisz</span
+              >
+            </div>
+            <div class="mobile-social-share">
+              <img
+                class="mobile-social-share-icon"
+                src="social/share-black.png"
+                alt=""
+              />
+              <span class="mobile-social-share-head mobile-social-head">
+                Udostępnij</span
+              >
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="col-2-feed">
+        <li class="important-medium-3">
+          <img
+            class="mobile-fake-portals-label"
+            src="fake-portals/pawsmopolitan.png"
+            alt=""
+          />
+          <picture id="medium-kitek-3" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_3_mobile.png"
+            />
+            <img src="kitki/kitek_medium_3.png" alt="mniej ważny kitek" />
+          </picture>
+          <h3 class="important-medium-header">
+            Według szacunków, co dziesiąty mieszkaniec Centralnej Azji jest
+            potomkiem Czyngis – chana.
+          </h3>
+          <div class="front-news-social-media front-news-social-media-black">
+            <div class="mobile-social-like">
+              <img
+                class="mobile-social-like-icon"
+                src="social/like-black.png"
+                alt=""
+              />
+              <span class="mobile-social-like-head mobile-social-head"
+                >Lubię to</span
+              >
+            </div>
+            <div class="mobile-social-save">
+              <img
+                class="mobile-social-save-icon"
+                src="social/save-black.png"
+                alt=""
+              />
+              <span class="mobile-social-save-head mobile-social-head"
+                >Zapisz</span
+              >
+            </div>
+            <div class="mobile-social-share">
+              <img
+                class="mobile-social-share-icon"
+                src="social/share-black.png"
+                alt=""
+              />
+              <span class="mobile-social-share-head mobile-social-head">
+                Udostępnij</span
+              >
+            </div>
+          </div>
+        </li>
+
+        <li class="important-medium-4">
+          <img
+            class="mobile-fake-portals-label"
+            src="fake-portals/vanity-fur.png"
+            alt=""
+          />
+          <picture id="medium-kitek-4" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_4_mobile.png"
+            />
+            <img src="kitki/kitek_medium_4.png" alt="mniej ważny kitek" />
+          </picture>
+          <h3 class="important-medium-header">
+            Język kameleona jest dwukrotnie dłuższy od jego ciała.
+          </h3>
+          <div class="front-news-social-media front-news-social-media-black">
+            <div class="mobile-social-like">
+              <img
+                class="mobile-social-like-icon"
+                src="social/like-black.png"
+                alt=""
+              />
+              <span class="mobile-social-like-head mobile-social-head"
+                >Lubię to</span
+              >
+            </div>
+            <div class="mobile-social-save">
+              <img
+                class="mobile-social-save-icon"
+                src="social/save-black.png"
+                alt=""
+              />
+              <span class="mobile-social-save-head mobile-social-head"
+                >Zapisz</span
+              >
+            </div>
+            <div class="mobile-social-share">
+              <img
+                class="mobile-social-share-icon"
+                src="social/share-black.png"
+                alt=""
+              />
+              <span class="mobile-social-share-head mobile-social-head">
+                Udostępnij</span
+              >
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="col-3-feed-wrapper">
+        <li class="mobile-col-3-headlines">
+          <ul>
+            <li class="mobile-col-3-headlines-wiadomosci">
+              <picture class="mobile-col-3-headlines-wiadomosci-icon">
+                <img src="news.png" alt="newsy" />
+              </picture>
+              <span class="mobile-col-3-headlines-wiadomosci-span">
+                Wiadomości
+              </span>
+            </li>
+            <li class="mobile-col-3-headlines-premium">
+              <span class="mobile-col-3-headlines-premium-span"> Premium </span>
+            </li>
+          </ul>
+        </li>
+        <li class="col-3-feed">
+          <picture id="small-kitek-1" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_small_1_mobile.png"
+            />
+            <img src="kitki/kitek_small_1.png" alt="mało ważny kitek" />
+          </picture>
+          <h4 class="important-small-header">
+            Krokodyle połykają kamienie w celu możliwości głębszego zanudzenia
+            się w wodzie.
+          </h4>
+        </li>
+        <li class="col-3-feed">
+          <picture id="small-kitek-2" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_small_2_mobile.png"
+            />
+            <img src="kitki/kitek_small_2.png" alt="mało ważny kitek" />
+          </picture>
+          <h4 class="important-small-header">
+            Żeby wejść na Wieżę Eiffla trzeba pokonać 1710 stopni.
+          </h4>
+        </li>
+        <li class="col-3-feed">
+          <picture id="small-kitek-3" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_small_3_mobile.png"
+            />
+            <img src="kitki/kitek_small_3.png" alt="mało ważny kitek" />
+          </picture>
+          <h4 class="important-small-header">
+            Nietoperze wylatujące z jaskini zawsze kierują się w lewą stronę.
+          </h4>
+        </li>
+        <li class="col-3-feed">
+          <picture id="small-kitek-4" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_small_4_mobile.png"
+            />
+            <img src="kitki/kitek_small_4.png" alt="mało ważny kitek" />
+          </picture>
+          <h4 class="important-small-header">
+            Misie koala mogą spać nawet 20 godzin dziennie.
+          </h4>
+        </li>
+        <li class="col-3-feed">
+          <picture id="small-kitek-5" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_small_5_mobile.png"
+            />
+            <img src="kitki/kitek_small_5.png" alt="mało ważny kitek" />
+          </picture>
+          <h4 class="important-small-header">
+            Kiwi to owoc, który dostarcza najwięcej witaminy C.
+          </h4>
+        </li>
+        <li class="col-3-feed mini-premium-label">
+          <picture id="small-kitek-6" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_small_6_mobile.png"
+            />
+            <img src="kitki/kitek_small_6.png" alt="mało ważny kitek" />
+          </picture>
+          <div class="premium-label-small kitek-picture">
+            <img src="premium-label.png" alt="" height="12" />
+          </div>
+          <h4 class="important-small-header">
+            Wszystkie koty mają unikalne odciski nosa.
+          </h4>
+        </li>
+        <li class="col-3-feed">
+          <picture id="small-kitek-7" class="kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_small_7_mobile.png"
+            />
+            <img src="kitki/kitek_small_7.png" alt="mało ważny kitek" />
+          </picture>
+          <h4 class="important-small-header">
+            <span id="tylko-w-onecie">TYLKO W ONECIE</span>Prawo Alaski mówi, że
+            nie można patrzeć na łosia z samolotu.
+          </h4>
+        </li>
+      </ul>
+    </section>
+    <!--Kolejna sekcja z artykułami-->
+    <section class="articles-2nd-section">
+      <ul class="v2nd-section-col1-big">
+        <li class="important-other-sections-header-wrapper">
+          <h2 class="important-other-sections-header">Wybrane dla Ciebie</h2>
+        </li>
+        <li class="v2nd-section-video">
+          <video
+            class="video-stasia"
+            src="kitki/kitek_video.mp4"
+            controls
+          ></video>
+          <h3 class="important-feed-header">
+            Otwarto nowe połączenie kolejowe! Nasza reporterka jest już na
+            miejscu.
+          </h3>
+          <div class="front-news-social-media front-news-social-media-video">
+            <div class="mobile-social-like mobile-social-like-video">
+              <img
+                class="mobile-social-like-icon"
+                src="social/like.png"
+                alt=""
+              />
+              <span
+                class="mobile-social-like-head mobile-social-like-head-video mobile-social-head"
+                >Lubię to</span
+              >
+            </div>
+            <div class="mobile-social-save mobile-social-save-video">
+              <img
+                class="mobile-social-save-icon"
+                src="social/save.png"
+                alt=""
+              />
+              <span
+                class="mobile-social-save-head mobile-social-save-head-video mobile-social-head"
+                >Zapisz</span
+              >
+            </div>
+            <div class="mobile-social-share">
+              <img
+                class="mobile-social-share-icon"
+                src="social/share.png"
+                alt=""
+              />
+              <span class="mobile-social-share-head mobile-social-head">
+                Udostępnij</span
+              >
+            </div>
+          </div>
+        </li>
+        <!-- w wersji mobilnej chcę, aby ten
+        kontener był niezależny od filmiku wyżej (aby stworzyć grida/flexa
+        tylko z tymi artykułami, bez filmiku). W związku z tym wrzuciłam
+      te artykuły w osobny pojemniczek, opatrzyłam klasą, którą wyłączę na 
+      WSZYSTKICH szerokościach poza mobilną.  -->
+        <li class="mobile-only-overall mobile-only-wrapper-scroll-articles">
+          <h3 class="mobile-only-headline-v2nd-section-scroll">Kocie sprawy</h3>
+
+          <ul class="mobile-only-wrapper">
+            <li class="v2nd-section-1st-col-medium-5">
+              <picture class="medium-kitek-5 kitek-picture">
+                <source
+                  media="(max-width: 599px)"
+                  srcset="kitki/mobile/kitek_medium_5_mobile.png"
+                />
+                <img
+                  src="kitki/kitek_medium_5.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h3 class="important-medium-header">
+                Test drapaków (w tym zasłon, foteli i kanap).
+              </h3>
+            </li>
+            <li class="v2nd-section-1st-col-medium-6">
+              <picture class="medium-kitek-6 kitek-picture">
+                <source
+                  media="(max-width: 599px)"
+                  srcset="kitki/mobile/kitek_medium_6_mobile.png"
+                />
+                <img
+                  src="kitki/kitek_medium_6.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h3 class="important-medium-header">
+                Gubienie sierści: jak rozpoznać najdroższe ubranie człowieka?
+              </h3>
+            </li>
+            <li class="v2nd-section-1st-col-medium-7">
+              <picture class="medium-kitek-7 kitek-picture">
+                <source
+                  media="(max-width: 599px)"
+                  srcset="kitki/mobile/kitek_medium_7_mobile.png"
+                />
+                <img
+                  src="kitki/kitek_medium_7.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h3 class="important-medium-header">
+                Jak robić jeszcze głośniejsze "meow"?
+              </h3>
+            </li>
+            <li class="v2nd-section-1st-col-medium-8">
+              <picture class="medium-kitek-8 kitek-picture">
+                <source
+                  media="(max-width: 599px)"
+                  srcset="kitki/mobile/kitek_medium_8_mobile.png"
+                />
+                <img
+                  src="kitki/kitek_medium_8.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h3 class="important-medium-header">
+                7 oznak, że przeholowałeś z kocimiętką.
+              </h3>
+            </li>
+          </ul>
+        </li>
+        <!-- Tu się kończy ten kontener na mobilne rzeczy. Żeby
+        nie powtarzać contentu w mobilnej wersji, wszystkie artykuły
+      wrzucam w klasę not-for-mobile-overall, którą wyłączę rzecz jasna
+      w wersji mobilnej-->
+        <li class="v2nd-section-1st-col-medium-5 not-for-mobile-overall">
+          <picture class="medium-kitek-5 kitek-picture not-for-mobile-overall">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_5_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_5.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header not-for-mobile-overall">
+            W Szwajcarii nielegalne jest posiadanie tylko jednej świnki
+            morskiej. Musisz mieć minimum dwie.
+          </h3>
+        </li>
+        <li class="v2nd-section-1st-col-medium-6 not-for-mobile-overall">
+          <picture class="medium-kitek-6 kitek-picture not-for-mobile-overall">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_6_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_6.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header not-for-mobile-overall">
+            Brytyjska rodzina królewska nie może grać w Monopoly.
+          </h3>
+        </li>
+        <li class="v2nd-section-1st-col-medium-7 not-for-mobile-overall">
+          <picture class="medium-kitek-7 kitek-picture not-for-mobile-overall">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_7_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_7.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header not-for-mobile-overall">
+            Szczury i konie nie mogą wymiotować.
+          </h3>
+        </li>
+        <li class="v2nd-section-1st-col-medium-8 not-for-mobile-overall">
+          <picture class="medium-kitek-8 kitek-picture not-for-mobile-overall">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_8_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_8.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header not-for-mobile-overall">
+            Elektryczne krzesło zostało wynalezione przez dentystę.
+          </h3>
+        </li>
+
+        <li class="v2nd-section-2nd-col-medium-9 mobile-only-yellow-container">
+          <h2 class="mobile-only-overall mobile-only-yellow-container-headline">
+            Wiadomości
+          </h2>
+          <ul class="mobile-only-overall mobile-only-news-menu-scroll">
+            <li>Kotopuszki i saszety</li>
+            <li>Uprawa kocimiętki</li>
+            <li>Świat</li>
+            <li>Ładne futerko</li>
+            <li>Tresura ludzi</li>
+            <li>Głośne meow</li>
+          </ul>
+          <picture class="medium-kitek-9 kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_9_mobile_big.png"
+            />
+            <img
+              src="kitki/kitek_medium_9.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3
+            class="important-medium-header important-medium-header-mobile-yellow-container"
+          >
+            Spanko: jak często robić przerwy w spaniu?
+          </h3>
+          <ul class="mobile-only-overall social-small-icons-mobile-wrapper">
+            <li class="social-small-icons-mobile">
+              <picture>
+                <img src="social/share-black.png" alt="share" />
+              </picture>
+              <picture>
+                <img src="social/save-black.png" alt="save" />
+              </picture>
+            </li>
+          </ul>
+        </li>
+
+        <li class="v2nd-section-2nd-col-medium-10 not-for-mobile-overall">
+          <picture class="medium-kitek-10 kitek-picture not-for-mobile-overall">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_10_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_10.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header not-for-mobile-overall">
+            Kot ma 32 mięśnie w każdym uchu.
+          </h3>
+        </li>
+        <li class="v2nd-section-2nd-col-medium-11 not-for-mobile-overall">
+          <picture class="medium-kitek-11 kitek-picture not-for-mobile-overall">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_11_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_11.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header not-for-mobile-overall">
+            Logo Chupa Chups zostało zaprojektowane przez Salvadora Dalí.
+          </h3>
+        </li>
+      </ul>
+
+      <section class="v2nd-section-3rd-wrapper">
+        <ul class="v2nd-section-3rd-col-part1">
+          <li class="v2nd-section-3rd-col-head1">
+            <h4 class="v2nd-section-3rd-col-head1-h4">Wiadomości</h4>
+          </li>
+          <li class="v2nd-section-3rd-col-small-8">
+            <picture class="small-kitek-8 kitek-picture">
+              <source
+                media="(max-width: 599px)"
+                srcset="kitki/mobile/kitek_small_8_mobile.png"
+              />
+              <img
+                src="kitki/kitek_small_8.png"
+                alt="mniej ważny kitek, ale wciąż ważny"
+              />
+            </picture>
+            <h4 class="important-small-header">
+              Langusta żywi się wyłącznie owocami morza, choć gdyby mogła,
+              jadłaby dżem.
+            </h4>
+          </li>
+          <li>
+            <ul class="v2nd-section-small-headlines">
+              <li>
+                <h5>Puszcza Białowieska jest najstarszym lasem w Europie.</h5>
+              </li>
+              <li>
+                <h5>W Korei Północnej nie można kupić Coca-Coli.</h5>
+              </li>
+              <li>
+                <h5>
+                  20% tlenu na Ziemi produktowane jest przez amazońskie lasy
+                  deszczowe.
+                </h5>
+              </li>
+              <li>
+                <h5>Dzieci mają około 100 kości więcej niż dorośli.</h5>
+              </li>
+            </ul>
+
+            <ul class="v2nd-section-3rd-col-part2">
+              <li class="v2nd-section-3rd-col-head2">
+                <h4 class="v2nd-section-3rd-col-head2-h4">Lokalnie</h4>
+              </li>
+              <li class="v2nd-section-3rd-col-small-9">
+                <picture class="small-kitek-9 kitek-picture">
+                  <source
+                    media="(max-width: 599px)"
+                    srcset="kitki/mobile/kitek_small_9_mobile.png"
+                  />
+                  <img
+                    src="kitki/kitek_small_9.png"
+                    alt="mniej ważny kitek, ale wciąż ważny"
+                  />
+                </picture>
+                <h4 class="important-small-header">
+                  Rosomak jest jednym z najagresywniejszych drapieżników Europy.
+                </h4>
+              </li>
+              <li>
+                <ul class="v2nd-section-small-headlines">
+                  <li>
+                    <h5>
+                      Heroina była kiedyś reklamowana jako lekarstwo na kaszel.
+                    </h5>
+                  </li>
+                  <li>
+                    <h5>
+                      Lato na Neptunie trwa 40 lat. Temperatura jednak spada do
+                      -200&deg;C.
+                    </h5>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </section>
+    <!--Sekcja z pogodą dostępna tylko dla telefonów-->
+    <section class="mobile-only-overall local-weather">
+      <h3 class="local-weather-city-headline">Warszawa</h3>
+      <div class="local-weather-icons">
+        <span class="local-weather-icons-today">Dzisiaj</span>
+        <img src="weather-mobile/weather.png" alt="pogoda" />
+        <img src="weather-mobile/smog.png" alt="smog" />
+        <img src="weather-mobile/biomet.png" alt="biomet" />
+        <img src="weather-mobile/car.png" alt="kierowcy" />
+        <img src="weather-mobile/jogging.png" alt="jogging" />
+        <img src="weather-mobile/uv.png" alt="UV" />
+      </div>
+      <div class="local-weather-text">
+        <h4 class="local-weather-text-headline">Prognoza pogody</h4>
+        <div class="local-weather-currently">
+          <span class="local-weather-temperature">15 &deg;</span>
+          <img
+            class="local-weather-icon"
+            src="weather-mobile/weather.png"
+            alt="pogoda"
+          />
+        </div>
+        <span class="local-weather-temperature-text">
+          Odczuwalna: 15 &#x2103; <br />
+          Zachmurzenie umiarkowane
+        </span>
+        <div class="local-weather-details-wrapper">
+          <span>Deszcz:</span>
+          <span class="local-weather-details-bold">0.0 mm</span>
+          <span>Zachmurzenie:</span>
+          <span class="local-weather-details-bold">51%</span>
+          <span>Wiatr:</span>
+          <span class="local-weather-details-bold">5.6 km/h</span>
+          <span>Wilgotność:</span>
+          <span class="local-weather-details-bold">56%</span>
+          <span>Ciśnienie atmosf.::</span>
+          <span class="local-weather-details-bold">1019 hPa</span>
+          <span>Śnieg:</span>
+          <span class="local-weather-details-bold">a dajcie spokój</span>
+        </div>
+      </div>
+    </section>
+    <!--Ostatnia sekcja-->
+    <section class="articles-3rd-section">
+      <ul class="v3rd-section-col1-wrapper">
+        <li class="important-other-sections-header-wrapper-sport">
+          <h2
+            class="important-other-sections-header important-other-sections-header-sec3 not-for-mobile-overall"
+          >
+            Wybrane dla Ciebie
+          </h2>
+        </li>
+        <li
+          class="important-other-sections-header-wrapper-sport mobile-only-overall"
+        >
+          <h2 class="important-other-sections-header mobile-only-overall">
+            Sport
+          </h2>
+        </li>
+        <li class="mobile-only-overall mobile-only-sport-menu-wrapper">
+          <ul class="mobile-only-sport-menu">
+            <li>Gonitwa za laserem</li>
+            <li>Spanko</li>
+            <li>Wbijanie pazurków w drogie kanapy</li>
+            <li>Strącanie przedmiotów</li>
+            <li>Parkour po mieszkaniu</li>
+          </ul>
+        </li>
+        <li class="v3rd-section-big">
+          <picture class="big-kitek-2 kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_big_2_mobile_rwd.png"
+            />
+            <img src="kitki/kitek_big_2.png" alt="bardzo ważny kitek" />
+          </picture>
+          <h3
+            class="important-medium-header important-medium-header-on-photo important-medium-header-sport"
+          >
+            Ryk lwa słychać już z odległości 8 kilometrów.
+          </h3>
+        </li>
+        <li class="mobile-only-overall mobile-sport-small-articles-wrapper">
+          <ul class="mobile-sport-small-articles">
+            <li class="v3rd-section-sport-col-small-11">
+              <picture class="small-kitek-11 kitek-picture">
+                <img
+                  src="kitki/mobile/kitek_small_11_mobile.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h4 class="important-small-header">
+                Krokodyl nie może wystawić języka.
+              </h4>
+            </li>
+            <li class="v3rd-section-sport-col-small-12">
+              <picture class="small-kitek-12 kitek-picture">
+                <img
+                  src="kitki/mobile/kitek_small_12_mobile.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h4 class="important-small-header">
+                Ptaki potrzebują grawitacji, aby połykać swoje pożywienie.
+              </h4>
+            </li>
+            <li class="v3rd-section-sport-col-small-13">
+              <picture class="small-kitek-13 kitek-picture">
+                <img
+                  src="kitki/mobile/kitek_small_13_mobile.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h4 class="important-small-header">
+                Prędkość maksymalna rekinów to 70 km/h.
+              </h4>
+            </li>
+            <li class="v3rd-section-sport-col-small-14">
+              <picture class="small-kitek-14 kitek-picture">
+                <img
+                  src="kitki/mobile/kitek_small_14_mobile.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h4 class="important-small-header">
+                Wiatr nie wydaje dźwięku, dopóki nie uderzy w jakiś obiekt.
+              </h4>
+            </li>
+            <li class="v3rd-section-sport-col-small-15">
+              <picture class="small-kitek-15 kitek-picture">
+                <img
+                  src="kitki/mobile/kitek_small_15_mobile.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h4 class="important-small-header">
+                Źrenica ośmiornicy i kozy jest prostokątna.
+              </h4>
+            </li>
+          </ul>
+        </li>
+        <!-- w wersji mobilnej chcę, aby ten
+        kontener był niezależny od filmiku wyżej (aby stworzyć grida/flexa
+        tylko z tymi artykułami, bez filmiku). W związku z tym wrzuciłam
+        te artykuły w osobny pojemniczek, opatrzyłam klasą, którą wyłączę na 
+        WSZYSTKICH szerokościach poza mobilną.  -->
+        <li
+          class="mobile-only-overall mobile-only-wrapper-premium-scroll-articles"
+        >
+          <h3 class="mobile-only-headline-v3rd-section-scroll">Premium</h3>
+          <ul class="mobile-only-premium-menu">
+            <li>Onet Premium</li>
+            <li>Pawsmopolitan</li>
+            <li>good-mousekeeping.pl</li>
+            <li>Vanity Fur</li>
+            <li>Claws&Chronicles</li>
+            <li>Meowly Mail</li>
+            <li>Mruczweek Polska</li>
+            <li>Miautomoto</li>
+          </ul>
+          <ul class="mobile-only-wrapper-premium">
+            <li class="v3rd-section-col1-medium">
+              <picture class="medium-kitek-12 kitek-picture">
+                <source
+                  media="(max-width: 599px)"
+                  srcset="kitki/mobile/kitek_medium_12_mobile.png"
+                />
+                <img
+                  src="kitki/kitek_medium_12.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h3 class="important-medium-header">
+                Powierzchnia Księstwa Monako jest mniejsza niż powierzchnia
+                Central Parku.
+              </h3>
+            </li>
+            <li class="v3rd-section-col1-medium">
+              <picture class="medium-kitek-13 kitek-picture">
+                <source
+                  media="(max-width: 599px)"
+                  srcset="kitki/mobile/kitek_medium_13_mobile.png"
+                />
+                <img
+                  src="kitki/kitek_medium_13.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h3 class="important-medium-header">
+                Na Falklandach żyje 200 razy więcej owiec niż ludzi.
+              </h3>
+            </li>
+            <li class="v3rd-section-col1-medium">
+              <picture class="medium-kitek-14 kitek-picture">
+                <source
+                  media="(max-width: 599px)"
+                  srcset="kitki/mobile/kitek_medium_21_mobile.png"
+                />
+                <img
+                  src="kitki/kitek_medium_14.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h3 class="important-medium-header">
+                Skorpiony świecą pod ultrafioletowym światłem.
+              </h3>
+            </li>
+            <li class="v3rd-section-col1-medium">
+              <picture class="medium-kitek-15 kitek-picture">
+                <source
+                  media="(max-width: 599px)"
+                  srcset="kitki/mobile/kitek_medium_15_mobile.png"
+                />
+                <img
+                  src="kitki/kitek_medium_15.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h3 class="important-medium-header">
+                Samice lwa są lepszymi łowcami niż samce.
+              </h3>
+            </li>
+            <li class="v3rd-section-col1-medium">
+              <picture class="medium-kitek-16 kitek-picture">
+                <source
+                  media="(max-width: 599px)"
+                  srcset="kitki/mobile/kitek_medium_16_mobile.png"
+                />
+                <img
+                  src="kitki/kitek_medium_16.png"
+                  alt="mniej ważny kitek, ale wciąż ważny"
+                />
+              </picture>
+              <h3 class="important-medium-header">
+                Nietoperze są jedynymi ssakami, które potrafią latać.
+              </h3>
+            </li>
+          </ul>
+        </li>
+        <!--Tu się kończy ten kontener na mobilne rzeczy. Żeby
+        nie powtarzać contentu w mobilnje wersji, wszystkie artykuły
+      wrzucam w klasę not-for-mobile-overall, którą wyłączę rzecz jasna
+      w wersji mobilnej-->
+        <li class="v3rd-section-col1-medium not-for-mobile-overall">
+          <picture class="medium-kitek-12 kitek-picture not-for-mobile-overall">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_12_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_12.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header not-for-mobile-overall">
+            Nietoperze są jedynymi ssakami, które potrafią latać.
+          </h3>
+        </li>
+        <li class="v3rd-section-col1-medium not-for-mobile-overall">
+          <picture class="medium-kitek-13 kitek-picture not-for-mobile-overall">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_13_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_13.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header not-for-mobile-overall">
+            Samice lwa są lepszymi łowcami niż samce.
+          </h3>
+        </li>
+        <li class="v3rd-section-col1-medium not-for-mobile-overall">
+          <picture class="medium-kitek-14 kitek-picture not-for-mobile-overall">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_21_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_14.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header not-for-mobile-overall">
+            Skorpiony świecą pod ultrafioletowym światłem.
+          </h3>
+        </li>
+        <li class="v3rd-section-col1-medium not-for-mobile-overall">
+          <picture class="medium-kitek-15 kitek-picture not-for-mobile-overall">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_15_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_15.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header not-for-mobile-overall">
+            Na Falklandach żyje 200 razy więcej owiec niż ludzi.
+          </h3>
+        </li>
+        <li class="v3rd-section-col1-medium not-for-mobile-overall">
+          <picture class="medium-kitek-16 kitek-picture not-for-mobile-overall">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_16_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_16.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header not-for-mobile-overall">
+            Powierzchnia Księstwa Monako jest mniejsza niż powierzchnia Central
+            Parku.
+          </h3>
+        </li>
+        <li class="v3rd-section-col1-medium">
+          <img
+            class="mobile-fake-portals-label"
+            src="fake-portals/Claws&Chronicles.png"
+            alt=""
+          />
+          <picture class="medium-kitek-17 kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_17_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_17.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header">
+            Wrony rozpoznają ludzkie twarze.
+          </h3>
+          <div class="front-news-social-media front-news-social-media-black">
+            <div class="mobile-social-like">
+              <img
+                class="mobile-social-like-icon"
+                src="social/like-black.png"
+                alt=""
+              />
+              <span class="mobile-social-like-head mobile-social-head"
+                >Lubię to</span
+              >
+            </div>
+            <div class="mobile-social-save">
+              <img
+                class="mobile-social-save-icon"
+                src="social/save-black.png"
+                alt=""
+              />
+              <span class="mobile-social-save-head mobile-social-head"
+                >Zapisz</span
+              >
+            </div>
+            <div class="mobile-social-share">
+              <img
+                class="mobile-social-share-icon"
+                src="social/share-black.png"
+                alt=""
+              />
+              <span class="mobile-social-share-head mobile-social-head">
+                Udostępnij</span
+              >
+            </div>
+          </div>
+        </li>
+        <li class="v3rd-section-col1-medium">
+          <img
+            class="mobile-fake-portals-label"
+            src="fake-portals/Mail.png"
+            alt=""
+          />
+          <picture class="medium-kitek-18 kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_18_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_18.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header">
+            Żaby nie mogą połykać z otwartymi oczami.
+          </h3>
+          <div class="front-news-social-media front-news-social-media-black">
+            <div class="mobile-social-like">
+              <img
+                class="mobile-social-like-icon"
+                src="social/like-black.png"
+                alt=""
+              />
+              <span class="mobile-social-like-head mobile-social-head"
+                >Lubię to</span
+              >
+            </div>
+            <div class="mobile-social-save">
+              <img
+                class="mobile-social-save-icon"
+                src="social/save-black.png"
+                alt=""
+              />
+              <span class="mobile-social-save-head mobile-social-head"
+                >Zapisz</span
+              >
+            </div>
+            <div class="mobile-social-share">
+              <img
+                class="mobile-social-share-icon"
+                src="social/share-black.png"
+                alt=""
+              />
+              <span class="mobile-social-share-head mobile-social-head">
+                Udostępnij</span
+              >
+            </div>
+          </div>
+        </li>
+        <li class="v3rd-section-col1-medium">
+          <img
+            class="mobile-fake-portals-label"
+            src="fake-portals/Mruczweek.png"
+            alt=""
+          />
+          <picture class="medium-kitek-19 kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_19_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_19.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header">
+            Możliwe jest poprowadzenie krowy po schodach, ale nie w dół.
+          </h3>
+          <div class="front-news-social-media front-news-social-media-black">
+            <div class="mobile-social-like">
+              <img
+                class="mobile-social-like-icon"
+                src="social/like-black.png"
+                alt=""
+              />
+              <span class="mobile-social-like-head mobile-social-head"
+                >Lubię to</span
+              >
+            </div>
+            <div class="mobile-social-save">
+              <img
+                class="mobile-social-save-icon"
+                src="social/save-black.png"
+                alt=""
+              />
+              <span class="mobile-social-save-head mobile-social-head"
+                >Zapisz</span
+              >
+            </div>
+            <div class="mobile-social-share">
+              <img
+                class="mobile-social-share-icon"
+                src="social/share-black.png"
+                alt=""
+              />
+              <span class="mobile-social-share-head mobile-social-head">
+                Udostępnij</span
+              >
+            </div>
+          </div>
+        </li>
+        <li class="v3rd-section-col1-medium">
+          <img
+            class="mobile-fake-portals-label"
+            src="fake-portals/OTOMOTO.png"
+            alt=""
+          />
+          <picture class="medium-kitek-20 kitek-picture">
+            <source
+              media="(max-width: 599px)"
+              srcset="kitki/mobile/kitek_medium_20_mobile.png"
+            />
+            <img
+              src="kitki/kitek_medium_20.png"
+              alt="mniej ważny kitek, ale wciąż ważny"
+            />
+          </picture>
+          <h3 class="important-medium-header">
+            Krew homarów jest bezbarwna, ale pod wpływem tlenu zmienia kolor na
+            niebieski.
+          </h3>
+          <div class="front-news-social-media front-news-social-media-black">
+            <div class="mobile-social-like">
+              <img
+                class="mobile-social-like-icon"
+                src="social/like-black.png"
+                alt=""
+              />
+              <span class="mobile-social-like-head mobile-social-head"
+                >Lubię to</span
+              >
+            </div>
+            <div class="mobile-social-save">
+              <img
+                class="mobile-social-save-icon"
+                src="social/save-black.png"
+                alt=""
+              />
+              <span class="mobile-social-save-head mobile-social-head"
+                >Zapisz</span
+              >
+            </div>
+            <div class="mobile-social-share">
+              <img
+                class="mobile-social-share-icon"
+                src="social/share-black.png"
+                alt=""
+              />
+              <span class="mobile-social-share-head mobile-social-head">
+                Udostępnij</span
+              >
+            </div>
+          </div>
+        </li>
+      </ul>
+      <section class="v3rd-section-2nd-col-wrapper">
+        <ul class="v3rd-section-2nd-col-part1 not-for-mobile-overall">
+          <li class="v3rd-section-2nd-col-head1">
+            <h4 class="v3rd-section-2nd-col-head1-h4">Sport</h4>
+          </li>
+          <li class="v3rd-section-2nd-col-small-10">
+            <picture class="small-kitek-10 kitek-picture">
+              <source
+                media="(max-width: 599px)"
+                srcset="kitki/mobile/kitek_small_10_mobile.png"
+              />
+              <img
+                src="kitki/kitek_small_10.png"
+                alt="mniej ważny kitek, ale wciąż ważny"
+              />
+            </picture>
+            <h4 class="important-small-header">
+              Krowy nie mają górnych przednich zębów.
+            </h4>
+          </li>
+          <li>
+            <ul class="v3rd-section-small-headlines">
+              <li>
+                <h5>
+                  W przeciwieństwie do ludzi, konie śpią w pozycji stojącej.
+                </h5>
+              </li>
+              <li>
+                <h5>Przeciętna kura składa 228 jaj rocznie.</h5>
+              </li>
+              <li>
+                <h5>Sprzedam opla</h5>
+              </li>
+              <li>
+                <h5>Błyskawice uderzają w Ziemię 6000 razy na minutę.</h5>
+              </li>
+              <li>
+                <h5>Ważka ma 6 nóg, ale nie może chodzić.</h5>
+              </li>
+              <li>
+                <h5>Więcej ludzi ginie od pszczół niż węży.</h5>
+              </li>
+              <li>
+                <h5>
+                  85% życia roślinnego znajduje się w oceanie, a nie na ziemi.
+                </h5>
+              </li>
+              <li>
+                <h5>Ośmiornice mają trzy serca.</h5>
+              </li>
+              <li>
+                <h5>Dęby nie produkują żołędzi, dopóki nie skończą 50 lat.</h5>
+              </li>
+              <li>
+                <h5>Cytryny zawierają więcej cukru niż truskawki.</h5>
+              </li>
+              <li>
+                <h5>Żyrafa potrafi czyścić uszy językiem.</h5>
+              </li>
+              <li>
+                <h5>Oko strusia jest większe niż jego mózg.</h5>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </section>
+    <footer class="goodbye">
+      Wygląd strony Onet.pl stanowił dla mnie wzór, który próbowałam przenieść w
+      ramach podsumowania mojej nauki html oraz css. Z tejże strony zaczerpnęłam
+      oryginalne logo oraz - rzecz jasna - cały layout bez funkcjonalności.
+      Wszystkie ikonki pochodzą ze strony
+      <a href="https://www.flaticon.com/">flaticon.com</a>. Ciekawostki
+      pozbierałam z różnych miejsc w Internecie i niestety nie mogę dać
+      gwarancji, że pokrywają się one z prawdą. Wszystkie zdjęcia oraz filmik są
+      mojego autorstwa i przedstawiają moje dwa koty: Kotę (czarno-biała) oraz
+      Stasię (czarna).
+    </footer>
+  </body>
+</html>
