@@ -1,4 +1,15 @@
-Ten projekt jest podsumowaniem etapu mojej nauki HTML oraz CSS. By jak najlepiej oddać ducha zawodowych warunków, sama nałożyłam sobie deadline oraz sama wyznaczyłam sobie cele do osiągnięcia. Były one następujące:
+Ten projekt jest podsumowaniem etapu mojej nauki HTML oraz CSS - jest to kopia layoutu strony Onet.pl w czterech widokach: na komputery stacjonarne, tablety w wariancie horyzontalnym i wertykalnym oraz mobilnym. 
+
+![desktop](https://github.com/user-attachments/assets/dac6da48-70bc-406f-a36b-03df0a093782)
+
+![tablet horizontal](https://github.com/user-attachments/assets/441af189-86c3-47f0-8c10-63725f2df7bc)
+
+![tablet vertical](https://github.com/user-attachments/assets/ce12a4ab-9b65-4fd1-aeb9-642695e1b30d)
+
+![mobile](https://github.com/user-attachments/assets/1b826f32-2fb3-4ebd-9e62-f8295e628077)
+
+
+By jak najlepiej oddać ducha zawodowych warunków, sama nałożyłam sobie deadline oraz sama wyznaczyłam sobie cele do osiągnięcia. Były one następujące:
 
 1) statyczna strona-kopia strony Onetu - do kilku pierwszych sekcji;
 2) RWD - wersje na desktopy, tablety oraz telefony;
