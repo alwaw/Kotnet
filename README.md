@@ -1,3 +1,5 @@
+Live wersja: https://alwaw.github.io/Kotnet/
+
 Ten projekt jest podsumowaniem etapu mojej nauki HTML oraz CSS - jest to kopia layoutu strony Onet.pl w czterech widokach: na komputery stacjonarne, tablety w wariancie horyzontalnym i wertykalnym oraz mobilnym. 
 
 ![desktop](https://github.com/user-attachments/assets/dac6da48-70bc-406f-a36b-03df0a093782)
